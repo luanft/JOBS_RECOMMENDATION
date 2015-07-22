@@ -1,148 +1,170 @@
-/*==============================================================*/
-/* DBMS name:      MySQL 5.0                                    */
-/* Created on:     22/07/2015 9:47:39 SA                        */
-/*==============================================================*/
+-- phpMyAdmin SQL Dump
+-- version 4.0.4.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 22, 2015 at 06:02 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
-drop table if exists ACCOUNT;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-drop table if exists CAREER_OBJECTIVE;
+--
+-- Database: `jobsrec`
+--
+CREATE DATABASE IF NOT EXISTS `jobsrec` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `jobsrec`;
 
-drop table if exists COMPANY_SUMARY;
+-- --------------------------------------------------------
 
-drop table if exists EDUCATION;
+--
+-- Table structure for table `account`
+--
 
-drop table if exists EXPERIENCE;
+CREATE TABLE IF NOT EXISTS `account` (
+  `Account_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Username` varchar(20) DEFAULT NULL,
+  `Email` varchar(200) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`Account_id`),
+  UNIQUE KEY `Username` (`Username`)  
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-drop table if exists JOB;
+-- --------------------------------------------------------
 
-drop table if exists PROFILE;
+--
+-- Table structure for table `career_objective`
+--
 
-drop table if exists RESUME;
+CREATE TABLE IF NOT EXISTS `career_objective` (
+  `Position` text,
+  `Desire_Salary` int(11) DEFAULT NULL,
+  `Recent_Salary` int(11) DEFAULT NULL,
+  `Desire_location` text,
+  `Willing_to_relocate` tinyint(1) DEFAULT NULL,
+  `Willing_to_travel` tinyint(1) DEFAULT NULL,
+  `Career_objective` text,
+  `Resume_id` int(11) NOT NULL,
+  PRIMARY KEY (`Resume_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: ACCOUNT                                               */
-/*==============================================================*/
-create table ACCOUNT
-(
-   Account_id           int not null,
-   Username             text,
-   Email                text,
-   Password             text,
-   primary key (Account_id)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: CAREER_OBJECTIVE                                      */
-/*==============================================================*/
-create table CAREER_OBJECTIVE
-(
-   Position             text,
-   Desire_Salary        int,
-   Recent_Salary        int,
-   Desire_location      text,
-   Willing_to_relocate  boolean,
-   Willing_to_travel    boolean,
-   Career_objective     text,
-   Resume_id            int not null,
-   primary key (Resume_id)
-);
+--
+-- Table structure for table `company_sumary`
+--
 
-/*==============================================================*/
-/* Table: COMPANY_SUMARY                                        */
-/*==============================================================*/
-create table COMPANY_SUMARY
-(
-   id                   int not null,
-   Account_id           int,
-   Company_name         text,
-   Company_description  text,
-   Email                text,
-   Phone                char(15),
-   Fax                  char(20),
-   Address              text,
-   Website              char(50),
-   Logo                 text,
-   primary key (id)
-);
+CREATE TABLE IF NOT EXISTS `company_sumary` (
+  `id` int(11) NOT NULL,
+  `Account_id` int(11) DEFAULT NULL,
+  `Company_name` text,
+  `Company_description` text,
+  `Email` text,
+  `Phone` char(15) DEFAULT NULL,
+  `Fax` char(20) DEFAULT NULL,
+  `Address` text,
+  `Website` char(50) DEFAULT NULL,
+  `Logo` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: EDUCATION                                             */
-/*==============================================================*/
-create table EDUCATION
-(
-   Education_id         int not null,
-   Level                text,
-   School               text,
-   Expertise            text,
-   School_year          text,
-   Resume_id            int,
-   primary key (Education_id)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: EXPERIENCE                                            */
-/*==============================================================*/
-create table EXPERIENCE
-(
-   Resume_id            int,
-   Experience_id        int not null,
-   Company_name         text,
-   Position             text,
-   Description          text,
-   Period               text,
-   primary key (Experience_id)
-);
+--
+-- Table structure for table `education`
+--
 
-/*==============================================================*/
-/* Table: JOB                                                   */
-/*==============================================================*/
-create table JOB
-(
-   Job_id               int not null,
-   Job_title            text,
-   Location             text,
-   Salary               text,
-   Description          text,
-   Tag                  text,
-   Company_sumary_id    int,
-   Requirement          text,
-   Benifit              text,
-   Post_date            datetime,
-   Source               text,
-   primary key (Job_id)
-);
+CREATE TABLE IF NOT EXISTS `education` (
+  `Education_id` int(11) NOT NULL,
+  `Level` text,
+  `School` text,
+  `Expertise` text,
+  `School_year` text,
+  `Resume_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Education_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*==============================================================*/
-/* Table: PROFILE                                               */
-/*==============================================================*/
-create table PROFILE
-(
-   Profile_id           int not null,
-   Name                 text,
-   Date_of_birth        datetime,
-   Gender               text,
-   Marital_status       boolean,
-   Place_of_birth       text,
-   Hometown             text,
-   Nationality          text,
-   Avatar               text,
-   Address              text,
-   Email                text,
-   Phone                char(15),
-   Hobby                text,
-   primary key (Profile_id)
-);
+-- --------------------------------------------------------
 
-/*==============================================================*/
-/* Table: RESUME                                                */
-/*==============================================================*/
-create table RESUME
-(
-   Profile_id           int,
-   Account_id           int,
-   Experience_id        int,
-   Resume_id            int not null,
-   primary key (Resume_id)
-);
+--
+-- Table structure for table `experience`
+--
 
+CREATE TABLE IF NOT EXISTS `experience` (
+  `Resume_id` int(11) DEFAULT NULL,
+  `Experience_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Company_name` text,
+  `Position` text,
+  `Description` text,
+  `Period` text,
+  PRIMARY KEY (`Experience_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job`
+--
+
+CREATE TABLE IF NOT EXISTS `job` (
+  `Job_id` int(11) NOT NULL AUTO_INCREMENT,
+  `Job_title` text,
+  `Location` text,
+  `Salary` text,
+  `Description` text,
+  `Tag` text,
+  `Company_sumary_id` int(11) DEFAULT NULL,
+  `Requirement` text,
+  `Benifit` text,
+  `Post_date` datetime DEFAULT NULL,
+  `Source` text,
+  PRIMARY KEY (`Job_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profile`
+--
+
+CREATE TABLE IF NOT EXISTS `profile` (
+  `Profile_id` int(11) NOT NULL,
+  `Name` text,
+  `Date_of_birth` datetime DEFAULT NULL,
+  `Gender` text,
+  `Marital_status` tinyint(1) DEFAULT NULL,
+  `Place_of_birth` text,
+  `Hometown` text,
+  `Nationality` text,
+  `Avatar` text,
+  `Address` text,
+  `Email` text,
+  `Phone` char(15) DEFAULT NULL,
+  `Hobby` text,
+  PRIMARY KEY (`Profile_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `resume`
+--
+
+CREATE TABLE IF NOT EXISTS `resume` (
+  `Profile_id` int(11) DEFAULT NULL,
+  `Account_id` int(11) DEFAULT NULL,
+  `Experience_id` int(11) DEFAULT NULL,
+  `Resume_id` int(11) NOT NULL,
+  PRIMARY KEY (`Resume_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
