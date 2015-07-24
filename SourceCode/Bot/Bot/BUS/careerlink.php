@@ -59,26 +59,24 @@ function get_job_from_itviec($page_url) {
 }
 
 //
-// if (isset ( $_GET ['page'] )) {
-// // $url = 'https://itviec.com/?page=';
-// $url = 'https://www.careerlink.vn/viec-lam/cntt-phan-mem/19?view=detail&page=';
-// get_job_from_itviec ( $url . $_GET ['page'] );
-
-// if ($_GET ['page'] < 10) {
-// echo "done ".$_GET['page'];
-// $_GET ['page'] += 1;
-// header ( "Location: careerlink.php?page=" . $_GET ['page'] );
-// } else {
-// echo "Done!";
-// }
-// } else {
-// echo "not set page";
-// }
-$i = 1;
-$url = 'https://www.careerlink.vn/viec-lam/cntt-phan-mem/19?view=detail&page=';
-while ( $i < 10 ) {
+if (isset ( $_GET ['page'] )) {
 	
-	get_job_from_itviec ( $url . $i ++ );
+	$url = 'https://www.careerlink.vn/viec-lam/cntt-phan-mem/19?view=detail&page=';
+	get_job_from_itviec ( $url . $_GET ['page'] );
+	
+	if ($_GET ['page'] < 10) {		
+		$_GET ['page'] += 1;		
+		header ("Location: careerlink.php?page=" . $_GET ['page'] );
+	} else {
+		echo "Done!";
+	}
+} else {
+	echo "not set page";
 }
-echo 'DONE@@@@@@@!!!!!!!!!';
+// $i = 1;
+// $url = 'https://www.careerlink.vn/viec-lam/cntt-phan-mem/19?view=detail&page=';
+// while ( $i < 10 ) {
+
+// get_job_from_itviec ( $url . $i ++ );
+// }
 ?>
