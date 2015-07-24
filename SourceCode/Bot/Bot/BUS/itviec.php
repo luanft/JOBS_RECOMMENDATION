@@ -3,6 +3,7 @@ header ( 'Content-Type: text/html; charset=utf-8' );
 require_once '../Lib/download.php';
 require_once '../Lib/simple_html_dom.php';
 require_once '../Lib/save_job.php';
+set_time_limit(0);
 function get_job_from_itviec($page_url) {
 	try {
 		$content = curl_download ( $page_url );
