@@ -2,7 +2,7 @@
 
 function curl_download($Url)
 {		
-	set_time_limit(0);
+	
 	// Báº¯t Ä‘áº§u CURl
 	$ch = curl_init($Url);	 
 	// Thiáº¿t láº­p giáº£ láº­p trÃ¬nh duyá»‡t
