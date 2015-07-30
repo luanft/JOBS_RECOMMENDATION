@@ -1,0 +1,664 @@
+<section id="content" class="main-content container">
+        <div class="dynamic-navbar" style="display: none;">
+        <div class="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8">
+                        <h2><span class="blue">20 Project Leaders</span>
+                        </h2>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 center-block">
+                        <div class="row">
+                            <!-- Normal user-->
+                            <div class="col-xs-7">
+                                                                <span class="link-list block">
+                                    <span class="pull-right">
+                                    <a class="popover-refer push-top-xs" data-original-title="" title=""><i class="fa fa-mail-forward fa-orange"></i>
+                                        <strong>Refer to a friend</strong></a>
+                                        </span>
+                                </span>
+                                                            </div>
+                            <!--Button Apply-->
+                            <div class="col-xs-5">
+                                                                <button onclick="initApplyForm();" data-toggle="modal" class="btn btn-primary btn-md btn-block" type="button">
+                                    Apply Now
+                                </button>
+                                                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Apply Form-->
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+        <form action="/jobseekers/apply_on_oneclick.php" method="post" enctype="multipart/form-data" id="applyJobForm" class="form-horizontal">
+            <input type="hidden" value="584984" id="jobId" name="jobId">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button data-dismiss="modal" class="close" type="button">
+                            <span tabindex="8" aria-hidden="true">×</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 id="myModalLabel" class="modal-title">You are applying for
+                            <strong>20 Project Leaders</strong><br>
+                            <em style="display: none;" id="appPreferLanguage" class="small">Employers prefer to
+                                receive your resume in <strong id="appPreferLanguageName"></strong> language.</em>
+                        </h4>
+                    </div>
+                                        <div class="modal-body">
+                        <div class="form-group">
+                            <div class="resume-header">
+                                <div class="col-sm-3 col-xs-4 resume-img"><i class="fa fa-user fa-5x"></i></div>
+                                <div class="col-sm-9 col-xs-8">
+                                    <h3 class="text-orange"><span id="app-fullName"></span><br>
+                                        <small><a id="app-title" tabindex="1" class="editable" href="#"></a></small>
+                                        <input type="hidden" value="" id="appJobTitle" name="appJobTitle">
+                                    </h3>
+                                    <p>
+                                        <a id="app-company" tabindex="2" class="text-clip editable" href="#"></a><br>
+                                        <a class="editable editable-click" data-pk="1" data-type="select2" id="app-location" tabindex="3" href="#"></a><br>
+                                        <span id="errorAppLocation" style="display: none;" class="error-message">Please enter your expected location</span>
+                                    </p>
+                                    <input type="hidden" value="" id="appCompanyName" name="appCompanyName">
+                                    <input type="hidden" value="" id="appExpectedLocation" name="appExpectedLocation">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resume-body" id="resume">
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-12 control-label" for="app-email">Email
+                                    address</label>
+
+                                <div class="col-sm-9 col-xs-12">
+                                    <p id="app-userName" class="form-control-static"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-12 control-label" for="app-phone">Phone number</label>
+
+                                <div class="col-sm-9 col-xs-12">
+                                    <p class="form-control-static">
+                                        <a tabindex="4" value="Enter phone number" class="editable" data-pk="1" data-type="text" href="#" id="app-phone"></a><br>
+                                        <span id="errorAppPhone" style="display: none;" class="error-message">Please enter your phone number</span>
+                                        <input type="hidden" value="" id="appPhoneNumber" name="appPhoneNumber">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-12 control-label" for="app-resume">
+                                    Resume
+                                                                    </label>
+
+                                <div class="col-sm-9 col-xs-12">
+                                    <div class="radio">
+                                        <label for="app-resume">
+                                            <input type="radio" value="currentResume" id="optionsRadios1" name="resumeApply" checked="checked" tabindex="5" class="editable">
+                                            <a class="editable" data-pk="1" data-type="select" tabindex="6" href="#" id="app-resume"></a>
+                                            <input type="hidden" value="" id="appDefaultResume" name="onlineResumeId">
+                                            <input type="hidden" value="" id="attachmentResume" name="attachmentResume">
+                                        </label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" value="newAttachment" id="optionsRadios2" name="resumeApply" tabindex="7" class="editable">
+                                                    <span class="upload-button">
+                                                        <input type="file" tabindex="8" value="Attach new" id="fileAttach" name="resumeFile" class="editable">
+                                                    </span>
+                                        </label>
+                                    </div>
+                                    <span class="small gray-light pull-left">You can only attach .doc, .docx, and .pdf files that are less than 512KB in size</span><br>
+                                    <span id="errorAppResume" style="display: none;" class="error-message">Please select resume</span>
+                                    <span id="errorAppResumeFile" style="display: none;" class="error-message">You can only attach .doc, .docx, and .pdf files that are less than 512KB in size.</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 col-xs-12 control-label" for="app-cover">
+                                    Cover letter
+                                                                    </label>
+
+                                <div class="col-sm-9 col-xs-12">
+                                    <p class="form-control-static full-width">
+                                        <span class="textarea-wrapper"><a class="app-cover editable" data-pk="1" data-type="textarea" tabindex="9" href="#" id="app-cover"></a></span>
+                                        <br>
+                                        <span id="txtCoverLetterRemain" class="small gray-light pull-left">You have 10000 characters remaining</span>
+                                                <span class="small pull-right">
+                                                    <a href="http://advice.vietnamworks.com/vi/career/viet-ho-so-thu-tim-viec/mau-thu-xin-viec-cho-sinh-vien-moi-tot-nghiep.html" tabindex="10" target="_blank">(View
+                                                        sample)</a>
+                                                </span>
+                                        <br>
+                                        <span id="errorCover" style="display: none;" class="error-message">Please enter cover letter</span>
+                                        <input type="hidden" value="" id="appCoverLetter" name="coverLetter">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="error-message" style="display: none;" id="errorAppSystem"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" id="appliedType" name="appliedType">
+                        <div class="pull-right">
+                            <button tabindex="11" class="btn btn-primary" id="applySendProcessBtn" type="button">Send</button>
+                            <button disabled="" tabindex="10" class="btn btn-default" style="display: none;" id="applySendingProcessBtn" type="submit"><img alt="" src="http://images.vietnamworks.com/loading.gif"> Sending
+                            </button>
+                        </div>
+
+                        <div style="display:none" id="noRankingJobDiv" class="pull-right padding-15">
+                            <div class="pull-left">
+                                <span><em>You are <strong class="score">#<span id="noRankingJob">0</span> out of 1</strong> applications</em></span>
+                                <span class="matching-score block text-right small"><em>powered by MATCHING<strong>SCORE</strong></em></span>
+                            </div>
+                        </div>
+                                                <div class="pull-right padding-15">
+                            <div class="pull-left">
+                                <span><em>You are the first person applying for this job</em></span>
+                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--End -->
+        <!-- Job Detail-->
+    <div itemtype="http://schema.org/JobPosting" itemscope="" id="section-job-detail">
+        <!-- Alert Messages -->
+        <div class="row">
+            <div class="col-md-12">
+                <div hidden="hidden" id="alert-refer-to-friend-success" class="alert alert-success">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <p class="text-lg">
+                        The Job <strong>"20 Project Leaders"</strong> has sucessfully been referred to
+                        <strong id="friendNameJR"></strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!--Blocked User-->
+                <div class="row">
+            <div class="col-md-12">
+                <div id="errorAlertPopup" class="alert alert-danger fade hide">
+                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                    <p class="text-lg">
+                        <strong>Oops! </strong> something went wrong. Please try again.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <!--/ Alert Messages -->
+
+        <!-- Job Header-->
+        <div class="job-header relative ">
+            <div class="box box-md">
+                <div class="absolute-right popover-icon premium-click" data-original-title="" title=""></div>
+                <div class="row">
+                    <div class="col1 col-md-3 employer-logo">
+                        <!-- Display when has logo-->
+                                                <span class="center-block text-center box-limit">
+                            <a href="http://www.vietnamworks.com/jobs-at-elca-it-vietnam-ltd-e618398-en">
+                                <img class="logo img-responsive" src="http://images.vietnamworks.com/pictureofcompany/a1/42534.gif">
+                            </a>
+                        </span>
+                                            </div>
+                    <div class="col2 col-md-9">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <div class="job-header-info">
+                                        <h1 class="job-title" itemprop="title">@job</h1>
+                                            <span class="company-name text-lg block">
+                                                <strong>@company</strong></span>
+                                        <span class="company-address block">@city</span>
+
+                                        <p class="work-location">
+                                            Work Location:
+                                            <span itemtype="http://schema.org/PostalAddress" itemscope="" itemprop="address"><a title="Jobs in Ho Chi Minh" href="http://www.vietnamworks.com/jobs-in-ho-chi-minh-v29-en">Ho Chi Minh</a></span>                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Hide this in mobile-->
+                            <div class="col-md-4 hidden-xs hidden-sm">
+                                <div class="push-top-sm"></div>
+                                <div class="action-apply center-block">
+                                                                                                                    <button onclick="initApplyForm();" data-toggle="modal" class="btn btn-primary btn-xlg col-sm-12" type="button">
+                                            Apply Now
+                                        </button>
+                                                                            
+                                                                                                                        <button onclick="saveJobForJobseeker();" class="btn push-top-xs btn-block btn-md btn-default save-job-button"><i class="fa fa-fw fa-thumbs-up"></i> <span> I'm interested</span></button>
+                                            <div hidden="" class="text-center push-top-sm save-job-status"><i class="fa fa-fw fa-thumbs-up text-success"></i> <span class="text-gray"> I'm interested</span></div>
+                                                                                                            </div>
+                            </div>
+                            <!--/-->
+                        </div>
+
+                        <!-- Salary-->
+                        <div class="row">
+                            <div class="pull-left">
+                                <div class="salary border pull-left padding-15 box-gray-light-ex rounded text-center bold-500">Salary:
+                                <span class="orange bold-700 text-lg">@salary</span>                                </div>
+                            </div>
+
+                            <br class="push-top-lg visible-xs">
+                            <!--Show in Mobile-->
+                            <div class="visible-xs visible-sm push-top-lg">
+                                                                <div class="action-apply center-block">
+                                    <button onclick="initApplyForm()" data-toggle="modal" class="col-sm-12 btn btn-primary btn-xlg" type="button">Apply Now</button>
+                                </div>
+                                                                                                                                            <button onclick="saveJobForJobseeker();" class="btn push-top-xs btn-block btn-md btn-default save-job-button"><i class="fa fa-fw fa-thumbs-up"></i> <span> I'm interested</span></button>
+                                        <div hidden="" class="text-center push-top-sm save-job-status"><i class="fa fa-fw fa-thumbs-up text-success"></i> <span class="text-gray"> I'm interested</span></div>
+                                                                                                </div>
+                            <!--/-->
+                            <div class="pull-right text-gray-light">
+                                                                    <div class="pull-left small padding-15">2 Views</div>
+                                                                                                                    <div class="pull-left small padding-15">Posted 11 minutes ago</div>
+                                                                                                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <!-- /.Job Header -->
+        <div class="row">
+                        <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
+                <div class="mc-data box-sm box-warning-light">
+                    <!-- Logged in with show matching score -->
+                                                    <span id="complete-profile">To See Matching Score, complete your profile</span>
+                                <span hidden="hidden" class="text-warning"><i>The score could not be calculated for this job</i></span>
+                                <p hidden="hidden" id="matching-score">This job matches <strong class="score match_profile">0%</strong> your profile </p>
+                                <span class="matching-score matching-score-form block text-right small">Powered by MATCHING<strong>SCORE</strong></span>
+                                <div hidden="hidden" class="matching-waiting center-block text-center"><img src="http://images.vietnamworks.com/loading.gif"></div>
+                                <div hidden="hidden" id="form-update-profile" class="form-update-profile push-top-xs" style="display: block;">
+                                    <form class="form-horizontal" id="matchingForm">
+                                                                                <div class="form-group-sm">
+                                            <label class="col-sm-4 control-label" for="jdJobTitle">Your Job Title</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" placeholder="E.g. UX Designer" id="jdJobTitle" name="jobtitle" class="form-control">
+                                            </div>
+                                        </div>
+                                        
+                                                                                        <div class="form-group-sm">
+                                                    <label class="col-sm-4 control-label" for="jdJobTitle">Job level</label>
+                                                    <div class="col-sm-8">
+                                                        <select id="cbJobLevel" name="jobLevelId" class="form-control">
+                                                            <option value="-1">Please select</option>
+                                                                                                                            <option value="1">New Grad/Entry Level/Internship</option>
+                                                                                                                            <option value="5">Experienced (Non-Manager)</option>
+                                                                                                                            <option value="6">Team Leader/Supervisor</option>
+                                                                                                                            <option value="7">Manager</option>
+                                                                                                                            <option value="10">Vice Director</option>
+                                                                                                                            <option value="3">Director</option>
+                                                                                                                            <option value="4">CEO</option>
+                                                                                                                            <option value="8">Vice President</option>
+                                                                                                                            <option value="9">President</option>
+                                                                                                                    </select>
+                                                    </div>
+                                                </div>
+                                        
+                                                                                                                                    <div id="" class="form-group-sm">
+                                                    <label class="col-sm-4 control-label" for="jdJobTitle">To Work In</label>
+                                                    <div class="col-sm-8">
+                                                        <select id="cbCity" class="form-control" name="cityid">
+                                                            <option value="-1">Please select</option>
+                                                                                                                            <option value="29">Ho Chi Minh</option>
+                                                                                                                            <option value="24">Ha Noi</option>
+                                                                                                                            <option value="71">Mekong Delta</option>
+                                                                                                                            <option value="2">An Giang</option>
+                                                                                                                            <option value="3">Ba Ria - Vung Tau</option>
+                                                                                                                            <option value="4">Bac Can</option>
+                                                                                                                            <option value="5">Bac Giang</option>
+                                                                                                                            <option value="6">Bac Lieu</option>
+                                                                                                                            <option value="7">Bac Ninh</option>
+                                                                                                                            <option value="8">Ben Tre</option>
+                                                                                                                            <option value="9">Bien Hoa</option>
+                                                                                                                            <option value="10">Binh Dinh</option>
+                                                                                                                            <option value="11">Binh Duong</option>
+                                                                                                                            <option value="12">Binh Phuoc</option>
+                                                                                                                            <option value="13">Binh Thuan</option>
+                                                                                                                            <option value="14">Ca Mau</option>
+                                                                                                                            <option value="15">Can Tho</option>
+                                                                                                                            <option value="16">Cao Bang</option>
+                                                                                                                            <option value="17">Da Nang</option>
+                                                                                                                            <option value="18">Dac Lac</option>
+                                                                                                                            <option value="69">Dien Bien</option>
+                                                                                                                            <option value="19">Dong Nai</option>
+                                                                                                                            <option value="20">Dong Thap</option>
+                                                                                                                            <option value="21">Gia Lai</option>
+                                                                                                                            <option value="22">Ha Giang</option>
+                                                                                                                            <option value="23">Ha Nam</option>
+                                                                                                                            <option value="25">Ha Tay</option>
+                                                                                                                            <option value="26">Ha Tinh</option>
+                                                                                                                            <option value="27">Hai Duong</option>
+                                                                                                                            <option value="28">Hai Phong</option>
+                                                                                                                            <option value="30">Hoa Binh</option>
+                                                                                                                            <option value="31">Hue</option>
+                                                                                                                            <option value="32">Hung Yen</option>
+                                                                                                                            <option value="33">Khanh Hoa</option>
+                                                                                                                            <option value="34">Kon Tum</option>
+                                                                                                                            <option value="35">Lai Chau</option>
+                                                                                                                            <option value="36">Lam Dong</option>
+                                                                                                                            <option value="37">Lang Son</option>
+                                                                                                                            <option value="38">Lao Cai</option>
+                                                                                                                            <option value="39">Long An</option>
+                                                                                                                            <option value="40">Nam Dinh</option>
+                                                                                                                            <option value="41">Nghe An</option>
+                                                                                                                            <option value="42">Ninh Binh</option>
+                                                                                                                            <option value="43">Ninh Thuan</option>
+                                                                                                                            <option value="44">Phu Tho</option>
+                                                                                                                            <option value="45">Phu Yen</option>
+                                                                                                                            <option value="46">Quang Binh</option>
+                                                                                                                            <option value="47">Quang Nam</option>
+                                                                                                                            <option value="48">Quang Ngai</option>
+                                                                                                                            <option value="49">Quang Ninh</option>
+                                                                                                                            <option value="50">Quang Tri</option>
+                                                                                                                            <option value="51">Soc Trang</option>
+                                                                                                                            <option value="52">Son La</option>
+                                                                                                                            <option value="53">Tay Ninh</option>
+                                                                                                                            <option value="54">Thai Binh</option>
+                                                                                                                            <option value="55">Thai Nguyen</option>
+                                                                                                                            <option value="56">Thanh Hoa</option>
+                                                                                                                            <option value="57">Thua Thien-Hue</option>
+                                                                                                                            <option value="58">Tien Giang</option>
+                                                                                                                            <option value="59">Tra Vinh</option>
+                                                                                                                            <option value="60">Tuyen Quang</option>
+                                                                                                                            <option value="61">Kien Giang</option>
+                                                                                                                            <option value="62">Vinh Long</option>
+                                                                                                                            <option value="63">Vinh Phuc</option>
+                                                                                                                            <option value="65">Yen Bai</option>
+                                                                                                                            <option value="66">Other</option>
+                                                                                                                            <option value="70">International</option>
+                                                                                                                            <option value="72">Hau Giang</option>
+                                                                                                                    </select>
+                                                    </div>
+                                                </div>
+                                                                                                                                                                    <div class="form-group-sm">
+                                            <label class="col-sm-4 control-label" for="jdJobTitle">Desire Salary</label>
+                                            <div class="col-sm-8">
+                                                <input type="number" placeholder="1000" id="jdSalary" name="salary" class="form-control">
+                                            </div>
+                                        </div>
+                                                                                <div class="form-group-sm">
+                                            <div class="col-sm-12">
+                                                <!--<span class="pull-right"><img src="http://images.vietnamworks.com/loading.gif"/></span>-->
+                                                <button id="btnSave" class="btn btn-sm btn-default pull-right" type="submit">Calculate</button>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" value="584984" name="job_id">
+                                    </form>
+                                </div>
+                                    </div>
+            </div>
+                        <!-- What We Can Offer-->
+            <div class="col-xs-12 col-md-8 col-lg-8 pull-left">
+                <div id="what-we-offer">
+                    <div class="box box-lg">
+                        <h2 class="pull-left">
+                                                        Tuyên,
+                                                        What We Can Offer
+                        </h2>
+                        <div class="clearfix"></div>
+                        <!--Benefits-->
+                                                <div class="icon-group expected-company-benefit-list push-top-xs">
+                            <div class="border-primary">
+                                                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-dollar"></i></div>
+                                        <div class="benefit-name">Attractive remuneration package with 13th salary</div>
+                                    </div>
+                                </div>
+                                                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-user-md"></i></div>
+                                        <div class="benefit-name">CMMI ML 3 since 2007; Many career advancement opportunites</div>
+                                    </div>
+                                </div>
+                                                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="benefit-icon"><i class="fa fa-fw fa-lg fa-file-image-o"></i></div>
+                                        <div class="benefit-name">Travel opportunities to Switzerland</div>
+                                    </div>
+                                </div>
+                                                            </div>
+
+                        </div>
+                                                <!-- Photo & Videos -->
+                                                <div class="clearfix">
+                            <div class="multi-carousel-wrapper fade-in-on-page-loaded in">
+                                <div data-jcarousel="true" class="multi-carousel">
+                                    <ul style="left: 0px; top: 0px;">
+                                                                                    <li style="width: 581px;">
+                                                <a rel="multi-carousel" href="http://www.youtube.com/embed/0Wd3rD2M4yI?wmode=transparent" style="height: 300px;">
+                                                    <img alt="" src="http://images.vietnamworks.com/img/playvideo.png" class="img-responsive" style="margin-top: 0px;">
+                                                </a>
+                                            </li>
+                                                                                                                                                                                                    </ul>
+                                </div>
+                                
+                                
+                                
+                            </div>
+                            <!-- /.photos -->
+                        </div>
+                                            </div>
+                </div>
+                <!-- Job Detail-->
+                <div class="job-info" id="job-detail">
+                                        <div class="box box-lg">
+                        <h2>You Should Be Best At</h2>
+                        <div class="push-top-sm job-tag-add-skill1">
+                                                        @tag
+                                                    </div>
+                    </div>
+                                        <div class="box box-lg">
+                        <!-- Job Description-->
+                        <h2>What You Will Do</h2>
+                        <div itemprop="description" class="push-top-sm" id="job-description">
+                        @description</div>
+                    </div>
+                    <div class="box box-lg">
+                        <!--Job Requirement-->
+                        <h2>What You Are Good At</h2>
+                        <div itemprop="experienceRequirements " id="job-requirement">
+                            <div class="job-requirement-must-have push-top-sm">
+                                <div class="">
+                                We expect from you: <br>
+- Bachelor’s Degree in Computer Science <br>
+- At least 5 years of overall experience in software development<br>
+- Good knowledge in software development including analysis and/or design<br>
+- Practical knowledge of databases such as Oracle, Microsoft SQL<br>
+- Experience in project management, controlling, requirements engineering management is a plus<br>
+- Interest in Quality Process (CMMI)<br>
+- An agile development mindset<br>
+- Fluency in English communication<br>
+<br>
+Please click on the "APPLY" button to send us your complete application in English (CV, photo, letter of motivation, diplomas and certificates).<br>
+<br>
+Shortlisted candidates will be contacted.                                </div>
+                            </div>
+                        </div>
+                    </div>
+                                    </div>
+                <!-- Company Info-->
+                <div itemtype="http://schema.org/Organization" itemscope="" itemprop="hiringOrganization" class="company-info">
+                    <div class="box box-lg">
+                        <h2>About Our Company</h2>
+                        <div class="company-info">
+                        <span class="link-list company-name text-lg push-top-xs block" itemprop="name">
+                                <strong><a href="http://www.vietnamworks.com/jobs-at-elca-it-vietnam-ltd-e618398-en">ELCA IT (Vietnam) Ltd.</a></strong></span>
+                            <span class="company-address block">Melody-2 Tower, N1 Dien Bien Phu, Ward 25, Binh Thanh District</span>
+                            <p>
+                                                                    Contact person: <strong>Human Resources Department</strong><br>
+                                                                Company size: <strong>100-499</strong>
+                            </p>
+                            <p>
+                            <span id="companyprofile">
+                                ELCA is one of Switzerland’s biggest Information Technology companies. Since the company was founded in 1968, we have offered our customers a single source for the complete spectrum of IT services including consulting, development and operations. Our team of over 600 specialists advises companies on the best use of modern information technologies, develops and implements efficient and stable solutions and applies our know-how to ensure excellence in use.<br>
+<br>
+Established in Vietnam since 1998 we guarantee:<br>
+- professional working environments with young and motivated teams<br>
+- projects using state-of-the-art technologies and Agile methodologies<br>
+- CMMI ML 3 since 2007<br>
+- extensive coaching and training<br>
+- flat hierarchies and cross-divisional collaboration<br>
+- very attractive remuneration package<br>
+- comfortable workplace<br>
+- travel opportunities                            </span>
+                            </p>
+                            <p class="push-top">
+                                <a href="http://www.vietnamworks.com/jobs-at-elca-it-vietnam-ltd-e618398-en"><i class="fa fa-arrow-right"></i> More jobs from this employer</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Company Info-->
+            </div>
+            <!--Actions-->
+            <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
+                <!-- Summary Box -->
+                <div class="box">
+                    <div class="padding-15 push-top-sm">
+                        <h4>
+                                                        Tuyên,
+                                                        consider to
+                        </h4>
+                    </div>
+                    <div class="list-group clearfix link-list push-top-sm">
+                        <!-- promoted -->
+                        <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-arrow-circle-up fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content">
+                                <p>
+                                    <a target="_blank" href="http://techlooper.com/#/get-promoted?jobCategoryIds=%5B35%5D&amp;jobLevelIds=%5B5%2C+6%5D&amp;jobTitle=20+Project+Leaders&amp;lang=en&amp;campaign=vietnamworks&amp;utm_source=VietnamWorks&amp;utm_medium=JobDescription&amp;utm_campaign=GetPromoted">How to get promoted</a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- end promoted -->
+                        <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-dollar fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content">
+                                <p>
+                                    <a target="_blank" href="http://techlooper.com/#/salary-review?utm_source=VietnamWorks&amp;utm_medium=JobDescription&amp;utm_campaign=EvaluateSalary&amp;lang=en">Evaluate your salary</a>
+                                </p>
+                            </div>
+                        </div>
+                                                <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-bookmark fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content">
+                                <p>
+                                    <a onclick="saveJobForJobseeker();" href="javascript:void(0)">Save this job</a>
+                                </p>
+                            </div>
+                        </div>
+                                                <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-envelope fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content">
+                                <p>
+                                    <a alt="Add job alert for similar jobs" onclick="return createSimiliarJobAlert();" href="http://www.vietnamworks.com/my-career-center/my-job-alert/?fromjob=true&amp;jobid=584984">Email me similar jobs</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-mail-forward fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content">
+                                <p>
+                                                                            <a class="popover-refer" data-original-title="" title="">Refer to a friend</a>
+                                                                    </p>
+                            </div>
+                        </div>
+                        <div class="list-group-item fontawesome-icon-list">
+                            <div class="item-icon last">
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-circle fa-stack-2x fa-gray"></i> <i class="fa fa-share-alt fa-stack-1x"></i>
+                                    </span>
+                            </div>
+                            <div class="item-content last">
+                                <p>
+                                    <span class="link-gray-light">
+              Share on
+                <a href="http://www.facebook.com/sharer.php?u=http://www.vietnamworks.com/20-project-leaders-584984-jd/&amp;utm_source=Facebook&amp;utm_medium=ShareButton&amp;utm_campaign=SocialNetwork&amp;t=VietnamWorks - ELCA IT (Vietnam) Ltd. - 20 Project Leaders" title="Share on Facebook"><i class="fa fa-lg fa-facebook-square"></i></a>
+                 <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://www.vietnamworks.com/jobs/detail/20-project-leaders-584984&amp;utm_source=LinkedIn&amp;utm_medium=ShareButton&amp;utm_campaign=SocialNetwork&amp;title=VietnamWorks - ELCA IT (Vietnam) Ltd. - 20 Project Leaders&amp;summary=In response to our expansion needs we are looking for 20 Project leaders for our development and integration projects. 
+
+As a Project leader, you are the primary contact for our contractor and interdisciplinary teams. You will:
+- Be responsible for projects from planning to acceptance
+- Ensure projects are under control with respect of time, quality and budget objectives
+- Apply agile project management methods
+- Lead team members in their daily tasks regarding requirements engineering or technical explanations 
+- Report project progress and issues to group leader, requesting support if necessary
+- Communicate project status to the Contractor, reporting issues together with resolution proposals when help is needed from the Contractor
+
+YOUR STRENGTH: 
+- Pleasure in coaching and managing engineers
+- Good hands-on technical skills in at least one of technologies such as Java stacks (Spring, Hibernate, JSF, GWT) or .NET stacks (ASP.NET, NHibernate, Entity FW) or SharePoint
+- Very good communication and presentation skills
+- Interest in business process and data modeling" title="Share on LinkedIn" target="_blank"><i class="fa fa-lg fa-linkedin-square"></i></a>
+                <a href="http://twitter.com/home?status=VietnamWorks - ELCA IT (Vietnam) Ltd. - 20 Project Leaders:+http://www.vietnamworks.com/jobs/detail/20-project-leaders-584984" title="Share on Twitter" target="_blank"><i class="fa fa-lg fa-twitter-square"></i></a>
+                </span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Summary Box -->
+            </div>
+
+            <!-- Other Job Details-->
+            <div class="col-xs-12 col-md-4 col-lg-4 pull-right">
+                <div class="box box-md">
+                    <div class="link-list">
+                        <h4>Summary Job Details</h4>
+
+                        <div class="push-top-xs"></div>
+                        <div class="list-group">
+                            <h5>Job level</h5>
+                            <a title="Team Leader/Supervisor jobs" href="http://www.vietnamworks.com/team-leader-supervisor-l6-en">Team Leader/Supervisor</a>                        </div>
+
+                        <div class="list-group push-top-xs">
+                            <h5>Job categories</h5>
+                            <a title="Jobs in IT - Software" href="http://www.vietnamworks.com/it-software-jobs-i35-en">IT - Software</a><br>                        </div>
+
+                        <div class="list-group push-top-xs">
+                            <h5>Preferred language</h5>
+
+                            <p>English</p>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Summary Box -->
+            </div>
+                                </div>
+
+    </div>
+    <!--End Job Detail -->
+    <div class="link-list pull-right go-top" style="display: none;">
+                <span class="fa-stack fa-lg">
+                    <a href="#top"><i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-arrow-up fa-stack-1x fa-inverse"></i></a>
+                </span>
+    </div>
+</section>
