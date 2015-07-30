@@ -58,7 +58,7 @@ if (isset ( $_GET ['page'] )) {
 	$url = 'https://itviec.com/?page=';
 	get_job_from_itviec ( $url . $_GET ['page'] );
 	
-	if ($_GET ['page'] < 10) {
+	if ($_GET ['page'] < 30) {
 		$_GET ['page'] += 1;
 		header ( "Location: itviec.php?page=" . $_GET ['page'] );
 	} else {

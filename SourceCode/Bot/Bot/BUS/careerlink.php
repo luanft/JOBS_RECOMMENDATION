@@ -70,7 +70,7 @@ if (isset ( $_GET ['page'] )) {
 	$url = 'https://www.careerlink.vn/viec-lam/cntt-phan-mem/19?view=detail&page=';
 	get_job_from_itviec ( $url . $_GET ['page'] );
 	
-	if ($_GET ['page'] < 10) {		
+	if ($_GET ['page'] < 50) {		
 		$_GET ['page'] += 1;		
 		header ("Location: careerlink.php?page=" . $_GET ['page'] );
 	} else {
