@@ -41,6 +41,11 @@ function analyze_file_struct($file) {
 	$element_container = $html->childNodes ( 0 )->tag;
 	if ($html->childNodes ( 0 )->class != '')
 		$element_container .= '[class="' . $html->childNodes ( 0 )->class . '"]';
+	else 
+	{
+		if ($html->childNodes ( 0 )->id != '')
+			$element_container .= '[id="' . $html->childNodes ( 0 )->id . '"]';
+	}
 	$struct = array ();
 	foreach ( $keys as $k ) {
 		$struct [$k] = find_key ( $html, $k );
@@ -56,6 +61,11 @@ function analyze_string_struct($str) {
 	$element_container = $html->childNodes ( 0 )->tag;
 	if ($html->childNodes ( 0 )->class != '')
 		$element_container .= '[class="' . $html->childNodes ( 0 )->class . '"]';
+	else 
+	{
+		if ($html->childNodes ( 0 )->id != '')
+			$element_container .= '[id="' . $html->childNodes ( 0 )->id . '"]';
+	}
 	$struct = array ();
 	foreach ( $keys as $k ) {
 		$struct [$k] = find_key ( $html, $k );
