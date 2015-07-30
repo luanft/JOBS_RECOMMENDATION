@@ -1,4 +1,5 @@
 <?php
+
 session_start ();
 header ( 'Content-Type: text/html; charset=utf-8' );
 require_once 'Lib/bot.php';
@@ -8,16 +9,20 @@ if (isset ( $_GET ['page'] )) {
 		echo "Please extract link before";
 	} else {
 		
-		$keys_map = analyze_file_struct ( 'PATTERN/detail.html' );		
-		$content = curl_download ($_SESSION ['link'][$_GET['page']]  );
+		$keys_map = analyze_file_struct ( 'PATTERN/detail.html' );	
+
+		$item = unserialize($_SESSION['link'][0]);			
+		
+		$content = curl_download ($item->link  );		
 		$doc = new simple_html_dom ();
 		$doc->load ( $content );
 		$job = $doc->find ( $element_container,0 );				
 		if ($job) {			
 			$dom = new simple_html_dom ();
 			$dom->load ( $job);
-			echo "Job: " . extract_data ( $dom, '@job' ) . '<br>';
-			echo "Company : " . extract_data ( $dom, '@company' ) . '<br>';
+			echo "Link: ".$item->link."<br>";
+			echo "Job: " .$item->name . '<br>';
+			echo "Company : " .$item->company. '<br>';
 			echo "Salary: " . extract_data ( $dom, '@salary' ) . '<br>';
 			echo "Description:  " . extract_data ( $dom, '@description' ) . '<br>';
 			echo "City: " . extract_data ( $dom, '@city' ) . '<br>';
@@ -35,8 +40,8 @@ if (isset ( $_GET ['page'] )) {
 			echo '<br>';			
 		}
 		if(count($_SESSION['link']) > $_GET['page'])
-			//echo '<script>window.location = "extract_data.php?page='.($_GET['page'] +1).'";</script>';
-		//else 
+			echo '<script>window.location = "extract_data.php?page='.($_GET['page'] +1).'";</script>';
+		else 
 			echo 'done!';					
 	}
 } else {
