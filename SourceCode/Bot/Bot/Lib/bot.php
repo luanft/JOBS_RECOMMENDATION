@@ -8,7 +8,10 @@ $keys = array (
 		"@job",
 		"@city",
 		"@description",
-		"@tag" 
+		"@tag",
+		"@benifit",
+		"@requirement",
+		"@expired"
 );
 $keys_map = array ();
 $element_container = "";

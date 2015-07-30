@@ -26,6 +26,9 @@ if (isset ( $_GET ['page'] )) {
 			echo "Salary: " . extract_data ( $dom, '@salary' ) . '<br>';
 			echo "Description:  " . extract_data ( $dom, '@description' ) . '<br>';
 			echo "City: " . extract_data ( $dom, '@city' ) . '<br>';
+			echo "Benifit: " . extract_data ( $dom, '@benifit' ) . '<br>';
+			echo "Requirement: " . extract_data ( $dom, '@requirement' ) . '<br>';
+			echo "Expired: " . extract_data ( $dom, '@expired' ) . '<br>';
 			$tg =  extract_list( $dom, '@tag' );
 			echo "Tag: ";
 			if(is_array($tg))	
