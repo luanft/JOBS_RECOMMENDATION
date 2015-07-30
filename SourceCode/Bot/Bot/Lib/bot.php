@@ -155,4 +155,21 @@ function get_job_from_url($page_url, $element) {
 	return null;
 }
 
+
+
+
+class JobItem
+{
+	public $name;
+	public $company;
+	public $link;
+
+	
+	public function __construct($c,$n,$l)
+	{
+		$this->company = $c;
+		$this->name = $n;
+		$this->link = $l;
+	}
+}
 ?>
