@@ -13,7 +13,7 @@ function bot_save_job($title,$location,$salary,$description,$tag,$company_name,$
 {
 	$x = new Connection();
 	$x->connect();
-	$x->write("INSERT INTO `job`(`Job_title`, `Location`, `Salary`, `Description`, `Tag`, `company_name`, `Company_sumary_id`, `Requirement`, `Benifit`, `Expired`, `Source`) VALUES ('addslashes($title)','addslashes($location)','addslashes($salary)','addslashes($description)','addslashes($tag)','addslashes($company_name)',addslashes($company_sumary_id),'addslashes($requirement)','addslashes($benifit)','addslashes($postdate)','addslashes($source)')");
+	$x->write("INSERT INTO `job`(`Job_title`, `Location`, `Salary`, `Description`, `Tag`, `company_name`, `Company_sumary_id`, `Requirement`, `Benifit`, `Expired`, `Source`) VALUES ('$title','$location','$salary','$description','$tag','$company_name',$company_sumary_id,'$requirement','$benifit','$postdate','$source')");
 	$x->close();
 }
 

@@ -59,9 +59,9 @@ if (isset ( $_POST ['txt_page_url'] ) &&
 		&& isset ( $_POST ['txt_description'] ) && isset ( $_POST ['txt_salary'] ) 
 		&& isset ( $_POST ['txt_requirement'] ) && isset ( $_POST ['txt_benifit'] ) 
 		 && isset ( $_POST ['txt_tag'] )) {
-	save_xpath(addslashes($_POST['txt_page_url']), addslashes($_POST['txt_base_url']), addslashes($_POST['txt_xpath_code']), 
-			addslashes($_POST['txt_job']), addslashes($_POST['txt_company']), addslashes($_POST ['txt_location']) , addslashes($_POST ['txt_description']),
-			 addslashes($_POST ['txt_salary']), addslashes($_POST ['txt_requirement']), addslashes($_POST ['txt_benifit']), addslashes($_POST ['txt_expired']), addslashes($_POST ['txt_tag']));
+	save_xpath( $_POST['txt_page_url'],  $_POST['txt_base_url'],  $_POST['txt_xpath_code'], 
+			 $_POST['txt_job'],  $_POST['txt_company'],  $_POST ['txt_location'] ,  $_POST ['txt_description'],
+			  $_POST ['txt_salary'],  $_POST ['txt_requirement'],  $_POST ['txt_benifit'],  $_POST ['txt_expired'],  $_POST ['txt_tag']);
 	
 	// $html = new simple_html_dom();
 	// $html->load($data);
