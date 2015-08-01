@@ -1,6 +1,6 @@
 <?php
 
-require_once '../Lib/connection.php';
+require_once '/Lib/connection.php';
 
 function get_current_date_time()
 {
@@ -17,7 +17,16 @@ function bot_save_job($title,$location,$salary,$description,$tag,$company_sumary
 	$x->close();
 }
 
-
+function save_xpath($home_url, $base_url, $xpath_code, $job_xpath, $company_xpath, $location_xpath, $description_xpath, $salary_xpath, $requirement_xpath, $benifit_xpath, $expired_xpath, $tags_xpath)
+{
+	
+	echo $home_url.$base_url.$xpath_code.$job_xpath.$company_xpath.$location_xpath.$description_xpath.$salary_xpath.$requirement_xpath.$benifit_xpath.$expired_xpath.$tags_xpath;
+	
+	$x = new Connection();
+	$x->connect();
+	$x->write("INSERT INTO `job_xpath` VALUES ('$home_url','$base_url','$xpath_code','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')");
+	$x->close();
+}
 
 
 

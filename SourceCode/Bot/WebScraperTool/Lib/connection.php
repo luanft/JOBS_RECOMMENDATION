@@ -3,7 +3,7 @@
 class Connection
 {
 	const  host_name = "localhost";
-	const  database_name="jobsrec";
+	const  database_name="test-db-jr";
 	const  user_name = "root";
 	const  user_pass = "";
 
