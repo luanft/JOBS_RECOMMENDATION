@@ -11,6 +11,17 @@ function get_current_date_time()
 
 function bot_save_job($title,$location,$salary,$description,$tag,$company_name,$company_sumary_id,$requirement,$benifit,$postdate,$source)
 {
+	$title = addslashes($title);
+	$location = addslashes($location);
+	$salary = addslashes($salary);
+	$description = addslashes($description);
+	$tag = addslashes($tag);
+	$company_name = addslashes($company_name);
+	$company_sumary_id = addslashes($company_sumary_id);
+	$requirement = addslashes($requirement);
+	$benifit = addslashes($benifit);
+	$postdate = addslashes($postdate);
+	$source = addslashes($source);
 	$x = new Connection();
 	$x->connect();
 	$x->write("INSERT INTO `job`(`Job_title`, `Location`, `Salary`, `Description`, `Tag`, `company_name`, `Company_sumary_id`, `Requirement`, `Benifit`, `Expired`, `Source`) VALUES ('$title','$location','$salary','$description','$tag','$company_name',$company_sumary_id,'$requirement','$benifit','$postdate','$source')");
