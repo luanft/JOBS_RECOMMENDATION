@@ -48,7 +48,50 @@ function save_xpath($home_url, $base_url, $xpath_code, $job_xpath, $company_xpat
 	$x->write("INSERT INTO `job_xpath` VALUES ('$home_url','$base_url','$xpath_code','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')");
 	$x->close();
 }
+function get_xpath($home_url)
+{
+	$x = new Connection();
+	$x->connect();
+	$data = $x->read("SELECT  home_url,xpath_code,job_xpath,
+    company_xpath,
+    location_xpath,
+    description_xpath,
+    salary_xpath,
+    requirement_xpath,
+    benifit_xpath,
+    expired_xpath,
+    tags_xpath from job_xpath where home_url='".$home_url."'");
+	$x->close();
+	return $data;
+}
+function get_all_xpaths()
+{
+	$x = new Connection();
+	$x->connect();
+	$data = $x->read("SELECT * from job_xpath");
+	$x->close();
+	return $data;
+}
+function update_xpath($page_url, $xpath_code, $job, $company, $location,$decription, $salary, $requirement, $benifit, $exprired, $tags)
+{
+	$x = new Connection();
+	$x->connect();
+	$sql="Update job_xpath set
+			xpath_code='".$xpath_code."',
+			job_xpath='".$job."',
+    		company_xpath='".$company."',
+    		location_xpath='".$location."',
+    		description_xpath='".$decription."',
+    salary_xpath='".$salary."',
+    requirement_xpath='".$requirement."',
+    benifit_xpath='".$benifit."',
+    expired_xpath='".$exprired."',
+    tags_xpath='".$tags."' where home_url='".$page_url."'";
+	//echo $sql;
+	$x->write($sql);
 
+	$x->close();
+}
 
 
 
