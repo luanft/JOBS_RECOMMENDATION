@@ -31,6 +31,7 @@ $(document).ready(function(){
 	$("#test_content").hide();
 	$("#edit_pattern").hide();
 	$("#save_pattern").hide();
+	$("#update_pattern").hide();
 	
 	$("#menu_main").click(function(){
 		$("#test_main").show();
@@ -65,13 +66,11 @@ $(document).ready(function(){
 	
 //test home
 	$('#form_get_link').submit(function () {
-
-		$("#div_result").html('Ä�ang xá»­ lĂ½');
+		
 	    // Get the Login Name value and trim it
 	    var url = $.trim($('#gl_url').val());
 	    var xpath = $.trim($('#gl_xpath').val());
 	    var base = $.trim($('#gl_base_url').val());
-	    	    
 	    $.post("tool.php",{txt_url:url, txt_xpath:xpath,txt_base:base},function(data,status){
 	    	$("#div_result").html(data);
 		    });
@@ -82,7 +81,6 @@ $(document).ready(function(){
 
 	$('#form_get_detail').submit(function () {
 
-		$("#div_result").html('Ä�ang xá»­ lĂ½');
 		
 	    var url = $.trim($('#gd_url').val());
 	    var job = $.trim($('#gd_job').val());
@@ -105,7 +103,6 @@ $(document).ready(function(){
 //form save xpath
 	$('#form_save_xpath').submit(function () {
 
-		$("#div_result").html('Ä�ang xá»­ lĂ½');
 		var page_url = $.trim($('#save_xpath_url').val());
 	    var base_url = $.trim($('#save_xpath_base_url').val());
 	    var xpath_code = $.trim($('#save_xpath_code').val());
@@ -126,8 +123,52 @@ $(document).ready(function(){
 	    return false;	    
 	});
 	
+//form update xpath
+$('#form_update_xpath').submit(function () {
+	$('#update_pattern').hide();
+ 		var page_url = $.trim($('#ed_xpath_url').val());
+ 	    var xpath_code = $.trim($('#ed_xpath_code').val());
+ 	    var job = $.trim($('#ed_xpath_job').val());
+		var company = $.trim($('#ed_xpath_company').val());
+ 	    var location = $.trim($('#ed_xpath_location').val());
+ 	    var description = $.trim($('#ed_xpath_description').val());
+ 	    var salary = $.trim($('#ed_xpath_salary').val());
+ 	    var requirement = $.trim($('#ed_xpath_requirement').val());
+ 	    var benifit = $.trim($('#ed_xpath_benifit').val());
+ 	    var expired = $.trim($('#ed_xpath_expired').val());
+ 	    var tag = $.trim($('#ed_xpath_tag').val());
+ 	   $.post("EditXPath.php",{txt_page_url:page_url,txt_xpath_code:xpath_code, txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data){
+	    	$("#div_result").html(data);
 
-	}); 
+	    			    });
+	    return false;	    
+	});
+//form edit xpath
+$('#form_edit_xpath').submit(function () {
+	
+	var home_url= $.trim($('#ed_home_url').val());
+	$('#update_pattern').show();
+    $.post("EditXPath.php",{txt_url:home_url},
+    	function(data)
+  		{
+    	$("#div_result").html('Done!');
+    	var obj = JSON.parse(data);
+    	$('#ed_xpath_url').val(obj.home_url);
+    	$('#ed_xpath_code').val(obj.xpath_code);
+    	$('#ed_xpath_job').val(obj.job_xpath);
+    	$('#ed_xpath_company').val(obj.company_xpath);
+    	$('#ed_xpath_location').val(obj.location_xpath);
+    	$('#ed_xpath_description').val(obj.description_xpath);
+    	$('#ed_xpath_salary').val(obj.salary_xpath);
+    	$('#ed_xpath_requirement').val(obj.requirement_xpath);
+    	$('#ed_xpath_benifit').val(obj.benifit_xpath);
+    	$('#ed_xpath_expired').val(obj.expired_xpath);
+    	$('#ed_xpath_tags').val(obj.tags_xpath);
+	    	});
+    return false;	    
+	});
+	
+}); 
 </script>
 	<div id="wrap">
 		<div id="header">
@@ -207,8 +248,46 @@ $(document).ready(function(){
 
 			</div>
 
-			<!-- DĂ¹ng Ä‘á»ƒ edit -->
-			<div id="edit_pattern">edit</div>
+			<!-- Edit XPath-->
+			<div id="edit_pattern">
+				<h2>Edit Page</h2>
+				<form action ="" method="" id= "form_edit_xpath">
+					
+					<h2>Home Url</h2>
+					<input id = "ed_home_url" " type= "text">
+					<input type= "submit" name = "btn_edit" value ="Edit XPath" >
+				</form>
+				
+			</div>
+			<!-- Update XPath-->
+			<div id="update_pattern">
+				<h1>Update xpath</h1>
+
+				<form action="" method="POST" id="form_update_xpath">
+					<input id="ed_xpath_url" type="hidden">
+					<h2>xpath code</h2>
+					<input id="ed_xpath_code" type="text">
+					<h2>Job</h2>
+					<input id="ed_xpath_job" type="text">
+					<h2>Company</h2>
+					<input id="ed_xpath_company" type="text">
+					<h2>Location</h2>
+					<input id="ed_xpath_location" type="text">
+					<h2>Description</h2>
+					<input id="ed_xpath_description" type="text">
+					<h2>Salary</h2>
+					<input id="ed_xpath_salary" type="text">
+					<h2>Requirement</h2>
+					<input id="ed_xpath_requirement" type="text">
+					<h2>Benifit</h2>
+					<input id="ed_xpath_benifit" type="text">
+					<h2>Expired</h2>
+					<input id="ed_xpath_expired" type="text">
+					<h2>Tags</h2>
+					<input id="ed_xpath_tag" type="text">
+					<input type="submit" name="btn_test_2" value="Update">
+				</form>
+			</div>
 
 			<!-- DĂ¹ng Ä‘á»ƒ save -->
 			<div id="save_pattern">
