@@ -4,10 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{6F1F627C-8A21-48C0-8043-7F805203B0C4}" Loaded="No" Name="ConceptualDataModel_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="ConceptualDataModel_1.cdm"/>
-		<Model Expanded="Yes" ID="{6F1F627C-8A21-48C0-8043-7F805203B0C4}" Loaded="No" Name="ConceptualDataModel_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="ConceptualDataModel_1.cdm"/>
-		<Model Expanded="Yes" ID="{6F1F627C-8A21-48C0-8043-7F805203B0C4}" Loaded="No" Name="ConceptualDataModel_1" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="ConceptualDataModel_1.cdm"/>
-		<Model Expanded="Yes" ID="{6F1F627C-8A21-48C0-8043-7F805203B0C4}" Name="ConceptualDataModel_1" Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="ConceptualDataModel_1.cdm"/>
+		<Model Expanded="Yes" ID="{C5995ECE-BC76-450F-BBF9-8736B9909094}" Name="Conceptual Data_1" Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="JOBREC_ERD.cdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
