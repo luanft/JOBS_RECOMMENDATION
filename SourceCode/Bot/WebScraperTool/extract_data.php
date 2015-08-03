@@ -1,6 +1,6 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-session_start ();
+session_start (); 
 require_once 'Lib/save_job.php';
 
 if (isset ( $_GET ['id1'] ) && isset ( $_GET ['id2'] ) && isset ( $_GET ['id3'] )) {
