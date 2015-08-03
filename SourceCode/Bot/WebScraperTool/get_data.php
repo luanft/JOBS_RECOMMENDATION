@@ -6,51 +6,33 @@ require_once 'xpath.php';
 require_once 'Domxpath.php';
 require_once 'Lib/save_job.php';
 
-// careerlink
-// $job='/html/body/div[2]/div[1]/h1';
-// $based_url = '';
-// $company='/html/body/div[2]/div[2]/div[1]/div/ul[1]/li[1]/a';
-// $location='/html/body/div[2]/div[2]/div[1]/div/ul[1]/li[2]';
-// $salary='/html/body/div[2]/div[2]/div[1]/div/ul[1]/li[3]';
-// $description='/html/body/div[2]/div[2]/div[1]/div/ul[2]';
-// $requiement='/html/body/div[2]/div[2]/div[1]/div/div[3]';
-// $expired='/html/body/div[2]/div[2]/div[1]/div/dl/dd[2]';
-// $tag='/html/body/div[2]/div[2]/div[1]/div/p';
-// $benifit='';
 
-// vietnamworks
-$job = '//*[@id="section-job-detail"]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/h1';
-$based_url = '';
-$company = '//*[@id="section-job-detail"]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/span[1]/strong';
-$location = '//*[@id="section-job-detail"]/div[3]/div/div[2]/div[2]/div[1]/div[1]/div/div/span[2]';
-$salary = '//*[@id="section-job-detail"]/div[3]/div/div[2]/div[2]/div[2]/div[1]/div/span';
-$description = '//*[@id="job-description"]';
-$requiement = '//*[@id="job-requirement"]/div/div';
-$expired = '';
-$tag = '//*[@id="job-detail"]/div[1]/div';
-$benifit = '//*[@id="what-we-offer"]/div/div[2]/div';
-
-if (isset ( $_GET ['page'] )) {
+if (isset ( $_GET ['offset'] )) {
 	
-	if ($_GET ['page'] < count ( $_SESSION ['link'] )) {
-		$data = curl_download ( $_SESSION ['link'] [$_GET ['page']] );
+	if ($_GET ['offset'] < count ( $_SESSION ['link'] )) {
+		
+// 		echo count ( $_SESSION ['link'] );
+// 		foreach ( $_SESSION ['link'] as $a)
+// 			echo $a."<br>";
+// 		die(cc);
+		$data = curl_download ( $_SESSION ['link'] [$_GET ['offset']] );
 		libxml_use_internal_errors ( true );
 		$xx = new DOMDocument ();
 		$xx->loadHTML ( $data );
 		$xp = new DOMXPath ( $xx );
 		
-		$djob = trim ( lay_du_lieu ( $xp, $job ) );
-		$dcompany = lay_du_lieu ( $xp, $company );
-		$dlocation = lay_du_lieu ( $xp, $location );
-		$ddes = lay_du_lieu ( $xp, $description );
-		$dsalary = lay_du_lieu ( $xp, $salary );
-		$drequirement = lay_du_lieu ( $xp, $requiement );
-		$dbenifit = lay_du_lieu ( $xp, $benifit );
-		$dexpired = lay_du_lieu ( $xp, $expired );
+		$djob = trim ( lay_du_lieu ( $xp, $_SESSION ['job_xpath'] [$_GET ['ses']] ) );
+		$dcompany = lay_du_lieu ( $xp, $_SESSION ['company_xpath'] [$_GET ['ses']] );
+		$dlocation = lay_du_lieu ( $xp, $_SESSION ['location_xpath'] [$_GET ['ses']] );
+		$ddes = lay_du_lieu ( $xp, $_SESSION ['description_xpath'] [$_GET ['ses']] );
+		$dsalary = lay_du_lieu ( $xp, $_SESSION ['salary_xpath'] [$_GET ['ses']] );
+		$drequirement = lay_du_lieu ( $xp, $_SESSION ['requirement_xpath'] [$_GET ['ses']] );
+		$dbenifit = lay_du_lieu ( $xp, $_SESSION ['benifit_xpath'] [$_GET ['ses']] );
+		$dexpired = lay_du_lieu ( $xp, $_SESSION ['expired_xpath'] [$_GET ['ses']] );
 		if ($dexpired == '')
 			$dexpired = date ( "m" ) + 1 . "-" . date ( "d" ) . "-" . date ( "Y" );
 		$dtag = '';
-		echo "Url :" . $_SESSION ['link'] [$_GET ['page']] . "<br><br>";
+		echo "Url :" . $_SESSION ['link'] [$_GET ['offset']] . "<br><br>";
 		echo "Job :" . $djob . "<br><br>";
 		echo "Company :" . $dcompany . "<br><br>";
 		echo "Location :" . $dlocation . "<br><br>";
@@ -59,7 +41,7 @@ if (isset ( $_GET ['page'] )) {
 		echo "Requirement :" . $drequirement . "<br><br>";
 		echo "Benifit :" . $dbenifit . "<br><br>";
 		echo "Expired :" . $dexpired . "<br><br>";
-		$dd = get_nodes_list ( $xp, $tag )->item ( 0 );
+		$dd = get_nodes_list ( $xp, $_SESSION ['tags_xpath'] [$_GET ['ses']] )->item ( 0 );
 		if ($djob != '') {
 			if ($dd->hasChildNodes ()) {
 				echo "Tag :  <br>";
@@ -69,13 +51,18 @@ if (isset ( $_GET ['page'] )) {
 			}
 			echo "Tag :" . $dtag . "<br><br>";
 			
-			bot_save_job ( $djob, $dlocation, $dsalary, $ddes, $dtag, $dcompany, 0, $drequirement, $dbenifit, $dexpired, $_SESSION ['link'] [$_GET ['page']] );
+			if(!bot_save_job ( $djob, $dlocation, $dsalary, $ddes, $dtag, $dcompany, 0, $drequirement, $dbenifit, $dexpired, $_SESSION ['link'] [$_GET ['offset']] ))
+				die(aaaaa);
 		}
 		
-		echo '<script>window.location = "get_data.php?page=' . ($_GET ['page'] + 1) . '";</script>';
+		echo '<script>window.location = "get_data.php?ses=' . ($_GET ['ses']) . '&offset=' . ($_GET ['offset'] + 1) . '";</script>';
 	} else {
-		echo 'done!';
-		session_unset ();
+		if ($_GET ['ses'] < 3)
+			echo '<script>window.location = "get_link.php?ses=' . ($_GET ['ses'] + 1) . '&page=1&offset=' . ($_GET ['offset']) .'";</script>';
+		else {
+			echo 'Done. haha!!!';
+			session_unset ();
+		}
 	}
 } else {
 	echo "Page not set";

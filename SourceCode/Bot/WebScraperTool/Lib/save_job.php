@@ -25,8 +25,13 @@ function bot_save_job($title,$location,$salary,$description,$tag,$company_name,$
 	$source = addslashes($source);
 	$x = new Connection();
 	$x->connect();
-	$x->write("INSERT INTO `job`(`Job_title`, `Location`, `Salary`, `Description`, `Tag`, `company_name`, `Company_sumary_id`, `Requirement`, `Benifit`, `Expired`, `Source`) VALUES ('$title','$location','$salary','$description','$tag','$company_name',$company_sumary_id,'$requirement','$benifit','$postdate','$source')");
+	$query = "INSERT INTO `job`(`Job_title`, `Location`, `Salary`, `Description`, `Tag`, `company_name`, `Company_sumary_id`, `Requirement`, `Benifit`, `Expired`, `Source`) VALUES ('$title','$location','$salary','$description','$tag','$company_name',$company_sumary_id,'$requirement','$benifit','$postdate','$source')";
+	$result = $x->write($query);
+	
+	if(!$result)
+		die($query);
 	$x->close();
+	return $result;
 }
 
 function save_xpath($home_url, $base_url, $xpath_code, $job_xpath, $company_xpath, $location_xpath, $description_xpath, $salary_xpath,
