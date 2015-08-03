@@ -5,7 +5,7 @@ require_once 'xpath.php';
 require_once 'Domxpath.php';
 
 if ($_GET ['page'] < $_SESSION ['num_page'] [$_GET ['ses']]) {
-// 	die( $_SESSION ['home_url'][$_GET ['ses']] .$_GET['page']);
+
 	$data = curl_download ( $_SESSION ['home_url'] [$_GET ['ses']] . $_GET ['page'] );
 	
 	$html = new simple_html_dom ();
@@ -17,11 +17,9 @@ if ($_GET ['page'] < $_SESSION ['num_page'] [$_GET ['ses']]) {
 		}
 		echo '<script>window.location = "get_link.php?ses=' . ($_GET ['ses']) . '&offset=' . ($_GET ['offset']) . '&page=' . ($_GET ['page'] + 1) . '";</script>';
 	} else {
-		echo $_SESSION ['xpath_code'] [$_GET ['ses']];
-		echo "<br>" .  $_SESSION ['home_url'] [$_GET ['ses']] . $_GET ['page']."<br>";
-		echo "Can not find <br>";
+		echo '<script>window.location = "get_data.php?ses=' . ($_GET ['ses']) . '&offset=' . ($_GET ['offset']) . '";</script>';
 	}
-} else {//die(ff);
+} else {
 	echo '<script>window.location = "get_data.php?ses=' . ($_GET ['ses']) . '&offset=' . ($_GET ['offset']) . '";</script>';
 }
 ?>
