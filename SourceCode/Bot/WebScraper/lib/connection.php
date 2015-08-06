@@ -4,7 +4,7 @@ class Connection
 {
 	const  host_name = "localhost";
 	const  database_name="recsys";
-	//const  database_name="jobsrec";
+// 	const  database_name="jobsrec";
 	const  user_name = "root";
 	const  user_pass = "";
 

@@ -116,6 +116,8 @@ $(document).ready(function(){
 			var page_url = $.trim($('#save_xpath_url').val());
 		    var base_url = $.trim($('#save_xpath_base_url').val());
 		    var xpath_code = $.trim($('#save_xpath_code').val());
+		    var login_url = $.trim($('#save_login_url').val());
+		    var login_data = $.trim($('#save_login_data').val());
 		    var job = $.trim($('#save_xpath_job').val());
 		    var company = $.trim($('#save_xpath_company').val());
 		    var location = $.trim($('#save_xpath_location').val());
@@ -124,9 +126,9 @@ $(document).ready(function(){
 		    var requirement = $.trim($('#save_xpath_requirement').val());
 		    var benifit = $.trim($('#save_xpath_benifit').val());
 		    var expired = $.trim($('#save_xpath_expired').val());
-		    var tag = $.trim($('#save_xpath_tag').val());
+		    var tag = $.trim($('#save_xpath_tag').val());		    
 		    	    	    	    	    	  
-		    $.post("AdminTool.php",{func:"savePattern",txt_page_url:page_url,txt_base_url:base_url,txt_xpath_code:xpath_code, txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data,status){
+		    $.post("AdminTool.php",{func:"savePattern",txt_page_url:page_url,txt_base_url:base_url,txt_xpath_code:xpath_code, txt_login_url:login_url, txt_login_data:login_data, txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data,status){
 		    	$("#div_result").html(data);
 			    });
 		    
@@ -193,7 +195,7 @@ $(document).ready(function(){
 		</div>
 
 		<div id="sidebar">
-			<h2>Last Posts:</h2>
+			<h3>Last Posts:</h3>
 			<div class="box">
 				<ul>
 					<li><a id="menu_main" href="#">Main pattern</a></li>
@@ -214,11 +216,11 @@ $(document).ready(function(){
 				
 				
 				<form action="" method="" id="form_get_link">
-					<h2>Page url</h2>
+					<h3>Page url</h3>
 					<input id="gl_url" type="text" name="txt_gl_url">
-					<h2>Base url</h2>
+					<h3>Base url</h3>
 					<input id="gl_base_url" type="text" name="txt_gl_base">
-					<h2>Xpath code</h2>
+					<h3>Xpath code</h3>
 					<input id="gl_xpath" type="text" name="txt_gl_xpath"> <input
 						type="submit" name="btn_test" value="Test pattern">
 				</form>
@@ -233,25 +235,25 @@ $(document).ready(function(){
 			<div id="test_content">
 				<h2>Get detail</h2>
 				<form action="" method="" id="form_get_detail">
-					<h2>Page url</h2>
+					<h3>Page url</h3>
 					<input id="gd_url" type="text">
-					<h2>Job</h2>
+					<h3>Job</h3>
 					<input id="gd_job" type="text">
-					<h2>Company</h2>
+					<h3>Company</h3>
 					<input id="gd_company" type="text">
-					<h2>Location</h2>
+					<h3>Location</h3>
 					<input id="gd_location" type="text">
-					<h2>Description</h2>
+					<h3>Description</h3>
 					<input id="gd_description" type="text">
-					<h2>Salary</h2>
+					<h3>Salary</h3>
 					<input id="gd_salary" type="text">
-					<h2>Requirement</h2>
+					<h3>Requirement</h3>
 					<input id="gd_requirement" type="text">
-					<h2>Benifit</h2>
+					<h3>Benifit</h3>
 					<input id="gd_benifit" type="text">
-					<h2>Expired</h2>
+					<h3>Expired</h3>
 					<input id="gd_expired" type="text">
-					<h2>Tags</h2>
+					<h3>Tags</h3>
 					<input id="gd_tag" type="text"> <input type="submit"
 						name="btn_test_2" value="Test pattern">
 				</form>
@@ -263,7 +265,7 @@ $(document).ready(function(){
 				<h2>Edit Page</h2>
 				<form action ="" method="" id= "form_edit_xpath">
 					
-					<h2>Home Url</h2>
+					<h3>Home Url</h3>
 					<input id = "ed_home_url" " type= "text">
 					<input type= "submit" name = "btn_edit" value ="Edit XPath" >
 				</form>
@@ -271,29 +273,29 @@ $(document).ready(function(){
 			</div>
 			<!-- Update XPath-->
 			<div id="update_pattern">
-				<h1>Update xpath</h1>
+				<h2>Update xpath</h2>
 
 				<form action="" method="POST" id="form_update_xpath">
 					<input id="ed_xpath_url" type="hidden">
-					<h2>xpath code</h2>
+					<h3>xpath code</h3>
 					<input id="ed_xpath_code" type="text">
-					<h2>Job</h2>
+					<h3>Job</h3>
 					<input id="ed_xpath_job" type="text">
-					<h2>Company</h2>
+					<h3>Company</h3>
 					<input id="ed_xpath_company" type="text">
-					<h2>Location</h2>
+					<h3>Location</h3>
 					<input id="ed_xpath_location" type="text">
-					<h2>Description</h2>
+					<h3>Description</h3>
 					<input id="ed_xpath_description" type="text">
-					<h2>Salary</h2>
+					<h3>Salary</h3>
 					<input id="ed_xpath_salary" type="text">
-					<h2>Requirement</h2>
+					<h3>Requirement</h3>
 					<input id="ed_xpath_requirement" type="text">
-					<h2>Benifit</h2>
+					<h3>Benifit</h3>
 					<input id="ed_xpath_benifit" type="text">
-					<h2>Expired</h2>
+					<h3>Expired</h3>
 					<input id="ed_xpath_expired" type="text">
-					<h2>Tags</h2>
+					<h3>Tags</h3>
 					<input id="ed_xpath_tag" type="text">
 					<input type="submit" name="btn_test_2" value="Update">
 				</form>
@@ -301,31 +303,35 @@ $(document).ready(function(){
 
 			<!-- DĂ¹ng Ä‘á»ƒ save -->
 			<div id="save_pattern">
-				<h1>Save xpath</h1>
+				<h2>Save xpath</h2>
 				<form action="" method="POST" id="form_save_xpath">
-					<h2>Page url</h2>
+					<h3>Page url</h3>
 					<input id="save_xpath_url" type="text">
-					<h2>Base url</h2>
+					<h3>Base url</h3>
 					<input id="save_xpath_base_url" type="text">
-					<h2>xpath code</h2>
+					<h3>xpath code</h3>
 					<input id="save_xpath_code" type="text">
-					<h2>Job</h2>
+					<h3>Login path</h3>
+					<input id="save_login_url" type="text">
+					<h3>Login data</h3>
+					<input id="save_login_data" type="text">
+					<h3>Job</h3>
 					<input id="save_xpath_job" type="text">
-					<h2>Company</h2>
+					<h3>Company</h3>
 					<input id="save_xpath_company" type="text">
-					<h2>Location</h2>
+					<h3>Location</h3>
 					<input id="save_xpath_location" type="text">
-					<h2>Description</h2>
+					<h3>Description</h3>
 					<input id="save_xpath_description" type="text">
-					<h2>Salary</h2>
+					<h3>Salary</h3>
 					<input id="save_xpath_salary" type="text">
-					<h2>Requirement</h2>
+					<h3>Requirement</h3>
 					<input id="save_xpath_requirement" type="text">
-					<h2>Benifit</h2>
+					<h3>Benifit</h3>
 					<input id="save_xpath_benifit" type="text">
-					<h2>Expired</h2>
+					<h3>Expired</h3>
 					<input id="save_xpath_expired" type="text">
-					<h2>Tags</h2>
+					<h3>Tags</h3>
 					<input id="save_xpath_tag" type="text"> <input type="submit"
 						name="btn_test_2" value="Test pattern">
 				</form>

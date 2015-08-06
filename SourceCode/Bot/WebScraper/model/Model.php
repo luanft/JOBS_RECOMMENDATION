@@ -8,7 +8,6 @@ class Model {
 	}
 }
 ;
-
 class XpathObject {
 	public $xpath_code;
 	public $job;
@@ -168,15 +167,16 @@ class CompanyModel extends Model {
 		}
 	}
 }
-
 class XPathModel extends Model {
 	public function __construct() {
 		parent::__construct ();
 	}
-	public function save($home_url, $base_url, $xpath_code, $job_xpath, $company_xpath, $location_xpath, $description_xpath, $salary_xpath, $requirement_xpath, $benifit_xpath, $expired_xpath, $tags_xpath) {
+	public function save($home_url, $base_url, $xpath_code, $login_url, $login_data, $job_xpath, $company_xpath, $location_xpath, $description_xpath, $salary_xpath, $requirement_xpath, $benifit_xpath, $expired_xpath, $tags_xpath) {
 		$home_url = addslashes ( $home_url );
 		$base_url = addslashes ( $base_url );
 		$xpath_code = addslashes ( $xpath_code );
+		$login_url = addslashes ( $login_url );
+		$login_data = addslashes ( $login_data );
 		$job_xpath = addslashes ( $job_xpath );
 		$company_xpath = addslashes ( $company_xpath );
 		$location_xpath = addslashes ( $location_xpath );
@@ -188,11 +188,10 @@ class XPathModel extends Model {
 		$tags_xpath = addslashes ( $tags_xpath );
 		
 		$this->connection->connect ();
-		$this->connection->write ( "INSERT INTO `job_xpath` VALUES ('$home_url','$base_url','$xpath_code','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')" );
+		$this->connection->write ( "INSERT INTO `job_xpath`(`home_url`, `base_url`, `xpath_code`, `login_url`, `login_data`, `job_xpath`, `company_xpath`, `location_xpath`, `description_xpath`, `salary_xpath`, `requirement_xpath`, `benifit_xpath`, `expired_xpath`, `tags_xpath`) VALUES ('$home_url','$base_url','$xpath_code','$login_url','$login_data','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')" );
 		$this->connection->close ();
 	}
 	public function get($home_url) {
-		
 		$this->connection->connect ();
 		$data = $this->connection->read ( "SELECT  home_url,xpath_code,job_xpath,
     company_xpath,
@@ -207,14 +206,12 @@ class XPathModel extends Model {
 		return $data;
 	}
 	public function getAll() {
-		
 		$this->connection->connect ();
-		$data =$this->connection->read ( "SELECT * from job_xpath" );
+		$data = $this->connection->read ( "SELECT * from job_xpath" );
 		$this->connection->close ();
 		return $data;
 	}
 	public function update($page_url, $xpath_code, $job, $company, $location, $decription, $salary, $requirement, $benifit, $exprired, $tags) {
-		
 		$this->connection->connect ();
 		$sql = "Update job_xpath set
 			xpath_code='" . $xpath_code . "',
