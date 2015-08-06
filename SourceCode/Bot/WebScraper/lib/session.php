@@ -20,6 +20,7 @@ class Session {
 				$_SESSION ['tags_xpath'] [] = $row ['tags_xpath'];
 				$_SESSION ['login_url'] [] = $row ['login_url'];
 				$_SESSION ['login_data'] [] = $row ['login_data'];
+				$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
 			}
 		}
 	}
@@ -64,6 +65,9 @@ class Session {
 	}
 	public static function get_login_data() {
 		return $_SESSION ['login_data'];
+	}
+	public static function get_cookie_name() {
+		return $_SESSION ['cookie_name'];
 	}
 	public function __construct() {
 	}
