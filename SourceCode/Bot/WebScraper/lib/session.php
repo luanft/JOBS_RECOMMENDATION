@@ -1,5 +1,6 @@
 <?php
 require_once 'model/Model.php';
+
 class Session {
 	public static function init() {
 		$xpath = new XPathModel ();
@@ -18,9 +19,11 @@ class Session {
 				$_SESSION ['benifit_xpath'] [] = $row ['benifit_xpath'];
 				$_SESSION ['expired_xpath'] [] = $row ['expired_xpath'];
 				$_SESSION ['tags_xpath'] [] = $row ['tags_xpath'];
-				$_SESSION ['login_url'] [] = $row ['login_url'];
+				$_SESSION ['login_url'] [] = $row ['login_url'];							
 				$_SESSION ['login_data'] [] = $row ['login_data'];
 				$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
+// 				if($row ['login_url'] != "")
+// 					login($_SESSION ['login_url'] [], $_SESSION ['login_data'] [], $_SESSION ['cookie_name'] []);
 			}
 		}
 	}
