@@ -1,12 +1,14 @@
 <?php
-require_once $_SERVER ["DOCUMENT_ROOT"] . 'model/Model.php';
+require_once $_SERVER ["DOCUMENT_ROOT"] . '/model/Model.php';
 class Session {
-	private $num_site;
+	private static $num_site;
 	public static function init() {
+				
 		$xpath = new XPathModel ();
-		$xpath->getAll ();
-		if ($this->num_site = mysqli_num_rows ( $xpath ) > 0) {
-			while ( $row = mysqli_fetch_assoc ( $xpath ) ) {
+		$data = $xpath->getAll ();
+		self::$num_site = mysqli_num_rows ( $data );
+		if (self::$num_site > 0) {			
+			while ( $row = mysqli_fetch_assoc ( $data ) ) {
 				$_SESSION ['home_url'] [] = $row ['home_url'];
 				$_SESSION ['base_url'] [] = $row ['base_url'];
 				$_SESSION ['xpath_code'] [] = $row ['xpath_code'];
@@ -22,8 +24,7 @@ class Session {
 				$_SESSION ['login_url'] [] = $row ['login_url'];
 				$_SESSION ['login_data'] [] = $row ['login_data'];
 				$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
-				// if($row ['login_url'] != "")
-				// login($_SESSION ['login_url'] [], $_SESSION ['login_data'] [], $_SESSION ['cookie_name'] []);
+				$_SESSION['num_site'] = self::$num_site;
 			}
 		}
 	}
@@ -33,7 +34,8 @@ class Session {
 		else return false;
 	}	
 	public static function count() {
-		return $this->num_site;
+		return $_SESSION['num_site'];
+		
 	}
 	public static function get_home_url() {
 		return $_SESSION ['home_url'];
