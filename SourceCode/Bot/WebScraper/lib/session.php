@@ -1,13 +1,15 @@
 <?php
+if (session_status () != PHP_SESSION_ACTIVE) {
+	session_start ();
+}
 require_once $_SERVER ["DOCUMENT_ROOT"] . '/model/Model.php';
 class Session {
 	private static $num_site;
 	public static function init() {
-				
 		$xpath = new XPathModel ();
 		$data = $xpath->getAll ();
 		self::$num_site = mysqli_num_rows ( $data );
-		if (self::$num_site > 0) {			
+		if (self::$num_site > 0) {
 			while ( $row = mysqli_fetch_assoc ( $data ) ) {
 				$_SESSION ['home_url'] [] = $row ['home_url'];
 				$_SESSION ['base_url'] [] = $row ['base_url'];
@@ -21,21 +23,23 @@ class Session {
 				$_SESSION ['benifit_xpath'] [] = $row ['benifit_xpath'];
 				$_SESSION ['expired_xpath'] [] = $row ['expired_xpath'];
 				$_SESSION ['tags_xpath'] [] = $row ['tags_xpath'];
-				$_SESSION ['login_url'] [] = $row ['login_url'];
-				$_SESSION ['login_data'] [] = $row ['login_data'];
-				$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
-				$_SESSION['num_site'] = self::$num_site;
+				if (trim ( $row ['login_url'] ) != '') {
+					$_SESSION ['login_url'] [] = $row ['login_url'];
+					$_SESSION ['login_data'] [] = $row ['login_data'];
+					$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
+				}
+				$_SESSION ['num_site'] = self::$num_site;
 			}
 		}
 	}
-	public static function is_exist($session_name){
-		if(isset($_SESSION[$session_name]))
+	public static function is_exist($session_name) {
+		if (isset ( $_SESSION [$session_name] ))
 			return true;
-		else return false;
-	}	
+		else
+			return false;
+	}
 	public static function count() {
-		return $_SESSION['num_site'];
-		
+		return $_SESSION ['num_site'];
 	}
 	public static function get_home_url() {
 		return $_SESSION ['home_url'];

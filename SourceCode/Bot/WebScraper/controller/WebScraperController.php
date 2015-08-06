@@ -21,11 +21,11 @@ class WebScraperController {
 		global $get_all_page;
 		if ($get_all_page) {			
 			// voi moi xpath
-			//$_GET['page'];
-			if ($_GET['xpath_id'] < Session::count ()) {
-				
+			if ($_GET['xpath_id'] < Session::count ()) {				
 				// lay xpath hien tai														
-				$url = Session::get_home_url ()[$_GET['xpath_id']];				
+				$url = Session::get_home_url ()[$_GET['xpath_id']];		
+				$next_page = 0;
+				$next_xpath = 0;
 				if ($_GET['page'] < $max_page) {
 					$url .=$_GET['page'];
 					$data = curl_download ( $url, Session::get_cookie_name ()[$_GET['xpath_id']] );					
@@ -39,18 +39,16 @@ class WebScraperController {
 							$_SESSION['link'][]['url']=$i->href;
 							echo $i->href."<br>";						
 						}						
-						$_GET['xpath_id']+=1;						
-						
+						 $next_page = $_GET['page']+1;						
 					} else {
-						$_GET['xpath_id']+=1;
-						$_GET['page']=1;
+						$next_xpath = $_GET['xpath_id']+1;
+						$next_page = 1;
 					}					
-					$next = "WebScraper.php?task=getLink&page=".$_GET['page']."&xpath_id=".$_GET['xpath_id'];
+					$next = "WebScraper.php?task=getLink&page=".$next_page."&xpath_id=".$next_xpath;					
 					echo "<script>window.location='$next';</script>";
 				}
 				else 
-				{
-					
+				{					
 					//tach du lieu
 				}
 			}
