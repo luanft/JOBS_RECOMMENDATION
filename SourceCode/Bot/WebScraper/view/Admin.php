@@ -14,7 +14,6 @@ header ( 'Content-Type: text/html; charset=utf-8' );
 	rel='stylesheet' type='text/css' />
 
 
-
 <head>
 <script src="lib/jquery-2.1.4.min.js"></script>
 </head>
@@ -139,7 +138,10 @@ $(document).ready(function(){
 	$('#form_update_xpath').submit(function () {
 		$('#update_pattern').hide();
 	 		var page_url = $.trim($('#ed_xpath_url').val());
+	 		var base_url = $.trim($('#ed_xpath_base_url').val());
 	 	    var xpath_code = $.trim($('#ed_xpath_code').val());
+	 	   var login_url = $.trim($('#ed_login_url').val());
+	 	  var login_data = $.trim($('#ed_login_data').val());
 	 	    var job = $.trim($('#ed_xpath_job').val());
 			var company = $.trim($('#ed_xpath_company').val());
 	 	    var location = $.trim($('#ed_xpath_location').val());
@@ -149,7 +151,7 @@ $(document).ready(function(){
 	 	    var benifit = $.trim($('#ed_xpath_benifit').val());
 	 	    var expired = $.trim($('#ed_xpath_expired').val());
 	 	    var tag = $.trim($('#ed_xpath_tag').val());
-	 	   $.post("AdminTool.php",{func:"updatePattern",txt_page_url:page_url,txt_xpath_code:xpath_code, txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data){
+	 	   $.post("AdminTool.php",{func:"updatePattern",txt_page_url:page_url,txt_base_url:base_url,txt_xpath_code:xpath_code, txt_login_url:login_url, txt_login_data:login_data,txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data){
 		    	$("#div_result").html(data);
 
 		    			    });
@@ -166,7 +168,10 @@ $(document).ready(function(){
 	    	$("#div_result").html('Done!');
 	    	var obj = JSON.parse(data);
 	    	$('#ed_xpath_url').val(obj.home_url);
+	    	$('#ed_xpath_base_url').val(obj.base_url);
 	    	$('#ed_xpath_code').val(obj.xpath_code);
+	    	$('#ed_login_url').val(obj.login_url);
+	    	$('#ed_login_data').val(obj.login_data);
 	    	$('#ed_xpath_job').val(obj.job_xpath);
 	    	$('#ed_xpath_company').val(obj.company_xpath);
 	    	$('#ed_xpath_location').val(obj.location_xpath);
@@ -175,7 +180,7 @@ $(document).ready(function(){
 	    	$('#ed_xpath_requirement').val(obj.requirement_xpath);
 	    	$('#ed_xpath_benifit').val(obj.benifit_xpath);
 	    	$('#ed_xpath_expired').val(obj.expired_xpath);
-	    	$('#ed_xpath_tags').val(obj.tags_xpath);
+	    	$('#ed_xpath_tag').val(obj.tags_xpath);
 		    	});
 	    return false;	    
 		});
@@ -263,22 +268,29 @@ $(document).ready(function(){
 			<!-- Edit XPath-->
 			<div id="edit_pattern">
 				<h2>Edit Page</h2>
-				<form action ="" method="" id= "form_edit_xpath">
-					
+				<form action="" method="" id="form_edit_xpath">
+
 					<h3>Home Url</h3>
-					<input id = "ed_home_url" " type= "text">
-					<input type= "submit" name = "btn_edit" value ="Edit XPath" >
+					<input id="ed_home_url" " type="text"> <input type="submit"
+						name="btn_edit" value="Edit XPath">
 				</form>
-				
+
 			</div>
 			<!-- Update XPath-->
 			<div id="update_pattern">
 				<h2>Update xpath</h2>
 
 				<form action="" method="POST" id="form_update_xpath">
-					<input id="ed_xpath_url" type="hidden">
+					<h3>Page url</h3>
+					<input id="ed_xpath_url" type="text">
+					<h3>Base url</h3>
+					<input id="ed_xpath_base_url" type="text">
 					<h3>xpath code</h3>
 					<input id="ed_xpath_code" type="text">
+					<h3>Login path</h3>
+					<input id="ed_login_url" type="text">
+					<h3>Login data</h3>
+					<input id="ed_login_data" type="text">
 					<h3>Job</h3>
 					<input id="ed_xpath_job" type="text">
 					<h3>Company</h3>
@@ -296,8 +308,8 @@ $(document).ready(function(){
 					<h3>Expired</h3>
 					<input id="ed_xpath_expired" type="text">
 					<h3>Tags</h3>
-					<input id="ed_xpath_tag" type="text">
-					<input type="submit" name="btn_test_2" value="Update">
+					<input id="ed_xpath_tag" type="text"> <input type="submit"
+						name="btn_test_2" value="Update">
 				</form>
 			</div>
 

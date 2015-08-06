@@ -193,15 +193,7 @@ class XPathModel extends Model {
 	}
 	public function get($home_url) {
 		$this->connection->connect ();
-		$data = $this->connection->read ( "SELECT  home_url,xpath_code,job_xpath,
-    company_xpath,
-    location_xpath,
-    description_xpath,
-    salary_xpath,
-    requirement_xpath,
-    benifit_xpath,
-    expired_xpath,
-    tags_xpath from job_xpath where home_url='" . $home_url . "'" );
+		$data = $this->connection->read ( "SELECT  * from job_xpath where home_url='" . $home_url . "'" );
 		$this->connection->close ();
 		return $data;
 	}
@@ -211,10 +203,14 @@ class XPathModel extends Model {
 		$this->connection->close ();
 		return $data;
 	}
-	public function update($page_url, $xpath_code, $job, $company, $location, $decription, $salary, $requirement, $benifit, $exprired, $tags) {
+	public function update($page_url, $base_url, $xpath_code, $login_url, $login_data, $job, $company, $location, $decription, $salary, $requirement, $benifit, $exprired, $tags) {
 		$this->connection->connect ();
 		$sql = "Update job_xpath set
+				home_url='".$page_url."',
+						base_url='".$base_url."',
 			xpath_code='" . $xpath_code . "',
+					login_url='".$login_url."',
+							login_data='".$login_data."',
 			job_xpath='" . $job . "',
     		company_xpath='" . $company . "',
     		location_xpath='" . $location . "',
