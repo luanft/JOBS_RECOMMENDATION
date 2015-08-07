@@ -28,6 +28,12 @@ class Session {
 					$_SESSION ['login_data'] [] = $row ['login_data'];
 					$_SESSION ['cookie_name'] [] = "cookie" . $row ['id'] . ".txt";
 				}
+				else 
+				{
+					$_SESSION ['login_url'] [] = '';
+					$_SESSION ['login_data'] [] = '';
+					$_SESSION ['cookie_name'] [] = "";
+				}
 				$_SESSION ['num_site'] = self::$num_site;
 			}
 		}

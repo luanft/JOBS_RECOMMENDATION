@@ -59,15 +59,7 @@ function get_nodes_list($data,$query)
 }
 
 
-// $html = new simple_html_dom();
-// $html->load($data);
 
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[3]/div[1]/div/h1')."<br><br>";
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[2]/div[1]/h3')."<br><br>";
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[3]/div[1]/div/div[3]/span[2]')."<br><br>";
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[3]/div[1]/div/div[4]/div')."<br><br>";
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[3]/div[2]/div[2]/p')."<br><br>";
-// echo get_by_xpath($html, '//*[@id]/div[2]/div/div[3]/div[4]/div[2]/p')."<br><br>";
 
 
 

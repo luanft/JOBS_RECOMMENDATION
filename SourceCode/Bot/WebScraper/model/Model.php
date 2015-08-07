@@ -120,8 +120,18 @@ class JobModel extends Model {
 		parent::__construct ();
 	}
 	public function AddNewJob($AccountId, $JobName, $Location, $Salary, $Description, $Company, $Tags, $Requirement, $Benifit, $Expired, $Source) {
-		$sql = "INSERT INTO `job`(`AccountId`, `JobName`, `Location`, `Salary`, `Description`, `Company`, `Tags`, `Requirement`, `Benifit`, `Expired`, `Source`)" + " VALUES ('$AccountId','$JobName','$Location','$Salary','$Description','$Company','$Tags','$Requirement','$Benifit','$Expired','$Source')";
-		$this->connection->connect ();
+				
+		$JobName = addslashes($JobName);
+		$Location = addslashes($Location);
+		$Salary = addslashes($Salary);
+		$Description = addslashes($JobName);
+		$Company = addslashes($Company);
+		$Tags = addslashes($Tags);
+		$Requirement = addslashes($Requirement);
+		$Benifit = addslashes($Benifit);
+		$Expired = addslashes($Expired);				
+		$sql = "INSERT INTO `job`(`AccountId`, `JobName`, `Location`, `Salary`, `Description`, `Company`, `Tags`, `Requirement`, `Benifit`, `Expired`, `Source`)". " VALUES ($AccountId,'$JobName','$Location','$Salary','$Description','$Company','$Tags','$Requirement','$Benifit','$Expired','$Source')";		
+		$this->connection->connect ();		
 		$ret = $this->connection->write ( $sql );
 		$this->connection->close ();
 		return $ret;

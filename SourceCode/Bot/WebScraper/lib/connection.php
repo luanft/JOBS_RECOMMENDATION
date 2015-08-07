@@ -44,7 +44,7 @@ class Connection
 	}
 
 	public function write($sql)
-	{										
+	{							
 		return mysqli_query($this->mysql_connection, $sql);
 	}
 }
