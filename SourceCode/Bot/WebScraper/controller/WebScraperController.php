@@ -106,7 +106,7 @@ class WebScraperController {
 					echo "Tag :" . $dtag . "<br><br>";
 					$source = $_SESSION ['link'] [$_GET ['page']] ['url'];
 					if (! $this->jobModel->isExist ( $source )) {
-						// $ret = $this->jobModel->AddNewJob("1", $djob, $dlocation, $dsalary, $ddes, $dcompany, $dtag, $drequirement, $dbenifit, $dexpired, $source);
+						$ret = $this->jobModel->AddNewJob("1", $djob, $dlocation, $dsalary, $ddes, $dcompany, $dtag, $drequirement, $dbenifit, $dexpired, $source);
 					} else {
 						echo "Exist";
 					}
