@@ -15,7 +15,7 @@ function curl_download($Url, $cookie) {
 function login($url, $data, $cookie) {
 
 	$login = curl_init ();
-	if ($cookie != "")	return;
+	if ($cookie == "")	return;
 	$fp = fopen ( $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie", "w" );
 	fclose ( $fp );
 	chmod ( $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie", 0777 );
