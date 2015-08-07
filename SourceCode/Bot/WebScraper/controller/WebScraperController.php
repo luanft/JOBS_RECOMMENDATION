@@ -64,8 +64,8 @@ class WebScraperController {
 			$url = $_SESSION ['link'] [$_GET ['page']] ['url'];
 			
 			$type = $_SESSION ['link'] [$_GET ['page']] ['type'];
-			
-			$data = curl_download ( $url, Session::get_cookie_name ()[$type] );
+			//trang ko can dang nhap download dc NULL
+			$data = curl_download_old ( $url, Session::get_cookie_name ()[$type] );
 			if ($data != '') {				
 				// $data = curl_download_old ($url);
 				libxml_use_internal_errors ( true );
@@ -110,6 +110,12 @@ class WebScraperController {
 					} else {
 						echo "Exist";
 					}
+				}
+				else 
+				{
+					echo "Completed: " . $_GET ['page'] . '/' . $_SESSION ['total_url'] . "<br><br>";
+					echo "Url :" . $_SESSION ['link'] [$_GET ['page']] ['url'] . "<br><br>";
+					echo "Error!";
 				}
 			}
 			else

@@ -37,7 +37,7 @@ function login($url, $data, $cookie) {
 
 
 
-function curl_download_old($Url)
+function curl_download_old($Url,$cookie='')
 {
 
 	// Báº¯t Ä‘áº§u CURl
@@ -46,11 +46,13 @@ function curl_download_old($Url)
 	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	curl_setopt($ch, CURLOPT_VERBOSE, true);
 	// nghÄ©a lÃ  giáº£ máº¡o Ä‘ang gá»­i tá»« trÃ¬nh duyá»‡t nÃ o Ä‘Ã³, á»Ÿ Ä‘Ã¢y tÃ´i dÃ¹ng Firefox
-	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:27.0) Gecko/20100101 Firefox/27.0");
+	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER ['HTTP_USER_AGENT']);
 	// Thiáº¿t láº­p tráº£ káº¿t quáº£ vá»� chá»© khÃ´ng print ra
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	// Thá»�i gian timeout
 	curl_setopt($ch, CURLOPT_TIMEOUT, 3000);
+	if ($cookie != "")
+		curl_setopt ( $ch, CURLOPT_COOKIEFILE,  $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie");
 	// Thá»±c hiá»‡n download file
 	$result = curl_exec($ch);
 	// Ä�Ã³ng CURL
