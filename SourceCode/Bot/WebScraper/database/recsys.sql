@@ -155,7 +155,9 @@ CREATE TABLE IF NOT EXISTS `job_xpath` (
   `benifit_xpath` text,
   `expired_xpath` text,
   `tags_xpath` text,
-  PRIMARY KEY (`home_url`)
+  `login_url` text NOT NULL,
+  `login_data` text NOT NULL,
+  `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -276,23 +278,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `job_xpath`
 --
 
-CREATE TABLE IF NOT EXISTS `job_xpath` (
-  `home_url` varchar(200) NOT NULL,
-  `base_url` text,
-  `xpath_code` text,
-  `job_xpath` text,
-  `company_xpath` text,
-  `location_xpath` text,
-  `description_xpath` text,
-  `salary_xpath` text,
-  `requirement_xpath` text,
-  `benifit_xpath` text,
-  `expired_xpath` text,
-  `tags_xpath` text,
-  `login_url` text NOT NULL,
-  `login_data` text NOT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 --
 -- Dumping data for table `job_xpath`
