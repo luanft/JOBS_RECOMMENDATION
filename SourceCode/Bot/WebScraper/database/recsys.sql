@@ -1,6 +1,6 @@
 
 --
--- Table structure for table `account`
+-- Table structure for table `account`dddd
 --
 
 CREATE TABLE IF NOT EXISTS `account` (
