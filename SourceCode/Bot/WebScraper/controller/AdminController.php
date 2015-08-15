@@ -35,8 +35,7 @@ class AdminController
 	public function testDetailPattern()
 	{
 		if (isset ( $_POST ['txt_url'] ) && isset ( $_POST ['txt_job'] ) && isset ( $_POST ['txt_company'] ) && isset ( $_POST ['txt_location'] ) && isset ( $_POST ['txt_description'] ) && isset ( $_POST ['txt_salary'] ) && isset ( $_POST ['txt_requirement'] ) && isset ( $_POST ['txt_benifit'] ) && isset ( $_POST ['txt_expired'] )) {
-			$data = curl_download_old( $_POST ['txt_url'] );
-		
+			$data = curl_download_old( $_POST ['txt_url'] );		
 			if ($data) {
 				libxml_use_internal_errors ( true );
 				$xx = new DOMDocument ();

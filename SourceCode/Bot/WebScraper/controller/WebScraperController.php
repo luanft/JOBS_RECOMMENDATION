@@ -15,58 +15,64 @@ class WebScraperController {
 			$this->$_GET ['task'] ();
 		}
 	}
-public function getLink()
-{
-		global $max_page;
-		global $min_page;
-		global $get_all_page;
-		if (! $get_all_page) {
-			$max_page = $min_page;
-		}		
-		if ($_GET ['xpath_id'] < Session::count ()) 
-		{
-			// lay xpath hien tai
-			$url = Session::get_home_url ()[$_GET ['xpath_id']];
-			$next_page = 0;
-			$next_xpath = $_GET ['xpath_id'];
-			if ($_GET ['page'] < $max_page)
+	public function getLink()
+	{
+			global $max_page;
+			global $min_page;
+			global $get_all_page;
+			if (! $get_all_page) {
+				$max_page = $min_page;
+			}		
+			if ($_GET ['xpath_id'] < Session::count ()) 
 			{
-				$url .= $_GET ['page'];
-				$data = curl_download_old ( $url );
-				$html = new simple_html_dom ();
-				$html->load ( $data );
-				$listA = get_xpath_node ( $html, Session::get_xpath_code ()[$_GET ['xpath_id']] );
-				if ($listA) 
+				// lay xpath hien tai
+				$url = Session::get_home_url ()[$_GET ['xpath_id']];
+				$next_page = 0;
+				$next_xpath = $_GET ['xpath_id'];
+				if ($_GET ['page'] < $max_page)
 				{
-					// lay url
-					foreach ( $listA as $i ) {
-						$link = array ();
-						$link ['type'] = $_GET ['xpath_id'];
-						$link ['url'] = Session::get_base_url ()[$_GET ['xpath_id']] . $i->href;
-						$_SESSION ['link'] [] = $link;
-						echo Session::get_base_url ()[$_GET ['xpath_id']] . $i->href . "<br>";
-					}					
-				} 
-				$next_page = $_GET ['page'] + 1;
+					$url .= $_GET ['page'];
+					$data = curl_download_old ( $url );
+					$html = new simple_html_dom ();
+					$html->load ( $data );
+					$listA = get_xpath_node ( $html, Session::get_xpath_code ()[$_GET ['xpath_id']] );
+					if ($listA) 
+					{
+						// lay url
+						foreach ( $listA as $i ) {
+							$link = array ();
+							$link ['type'] = $_GET ['xpath_id'];
+							$link ['url'] = Session::get_base_url ()[$_GET ['xpath_id']] . $i->href;
+							$_SESSION ['link'] [] = $link;
+							echo Session::get_base_url ()[$_GET ['xpath_id']] . $i->href . "<br>";
+						}					
+					} 
+					$next_page = $_GET ['page'] + 1;
+				}
+				else 
+				{
+					$next_xpath = $_GET ['xpath_id'] + 1;
+					$next_page = 1;
+				}
+				$next = "WebScraper.php?task=getLink&page=" . $next_page . "&xpath_id=" . $next_xpath;
+				echo "<script>window.location =\"$next\";</script>";	
 			}
-			else 
+			else
 			{
-				$next_xpath = $_GET ['xpath_id'] + 1;
-				$next_page = 1;
+				// tach du lieu
+				$_SESSION ['total_url'] = count ( $_SESSION ['link'] );
+				$next = "WebScraper.php?task=getData&page=0";
+				echo "<script>window.location =\"$next\";</script>";
 			}
-			$next = "WebScraper.php?task=getLink&page=" . $next_page . "&xpath_id=" . $next_xpath;
-			echo "<script>window.location =\"$next\";</script>";	
-		}
-		else
-		{
-			// tach du lieu
-			$_SESSION ['total_url'] = count ( $_SESSION ['link'] );
-			$next = "WebScraper.php?task=getData&page=0";
-			echo "<script>window.location =\"$next\";</script>";
-		}
-}
+	}
 	public function getData() {
 		if (isset ( $_GET ['page'] )) {
+			//dung viec chay
+			if ($_GET ['page'] >= $_SESSION ['total_url']) {					
+				session_unset ();
+				echo "Done!";
+				exit();				
+			}
 			$url = $_SESSION ['link'] [$_GET ['page']] ['url'];			
 			$type = $_SESSION ['link'] [$_GET ['page']] ['type'];
 			//trang ko can dang nhap download dc NULL
@@ -129,14 +135,9 @@ public function getLink()
 				echo "Url :" . $_SESSION ['link'] [$_GET ['page']] ['url'] . "<br><br>";
 				echo "Empty page!";
 			}
-			if ($_SESSION ['total_url'] > $_GET ['page']) {
-				$next = "WebScraper.php?task=getData&page=" . ($_GET ['page'] + 1);
-				echo "<script>window.location =\"$next\";</script>";
-				exit ();
-			} else {
-				session_unset ();
-				echo "Done!";
-			}
+			$next = "WebScraper.php?task=getData&page=" . ($_GET ['page'] + 1);
+			echo "<script>window.location =\"$next\";</script>";
+			exit ();
 		}
 	}
 }
