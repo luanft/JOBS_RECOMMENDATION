@@ -1,6 +1,6 @@
 <?php
 // $_SERVER["DOCUMENT_ROOT"]
-require_once $_SERVER ["DOCUMENT_ROOT"] . '/Lib/connection.php';
+require_once $_SERVER ["DOCUMENT_ROOT"] . '/lib/connection.php';
 class Model {
 	protected $connection;
 	public function __construct() {

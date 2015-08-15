@@ -9,7 +9,14 @@ $cookie = Session::get_cookie_name();
 
 for ($i=0; $i < Session::count(); $i++ )
 {
-	login($url[$i], $data[$i], $cookie[$i]);	
+	try {		
+		login($url[$i], $data[$i], $cookie[$i]);		
+	}
+	catch (Exception $e)
+	{
+		
+	}
+		
 }
 echo '<script>window.location="WebScraper.php?task=getLink&page=1&xpath_id=0";</script>';
  

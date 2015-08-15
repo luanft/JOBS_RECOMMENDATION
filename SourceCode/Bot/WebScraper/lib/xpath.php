@@ -1,7 +1,7 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-require_once  $_SERVER ["DOCUMENT_ROOT"].'/Lib/simple_html_dom.php';
-require_once  $_SERVER ["DOCUMENT_ROOT"].'/Lib/download.php';
+require_once  $_SERVER ["DOCUMENT_ROOT"].'/lib/simple_html_dom.php';
+require_once  $_SERVER ["DOCUMENT_ROOT"].'/lib/download.php';
 
 function get_by_xpath($data,$query)
 {
