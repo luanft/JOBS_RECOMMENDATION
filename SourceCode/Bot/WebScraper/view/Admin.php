@@ -228,6 +228,7 @@ $(document).ready(function(){
 	    return false;	    
 		});
 
+
 }); 
 </script>
 	<div id="wrap">
@@ -395,6 +396,7 @@ $(document).ready(function(){
 			<div id= 'log_pattern'>
 				<form id= 'form_test_xpath' method="" action="">
 				<?php $log= new TestGUI(); $log->showLog()?>
+				
 				</form>
 			</div>
 			<!-- result -->
