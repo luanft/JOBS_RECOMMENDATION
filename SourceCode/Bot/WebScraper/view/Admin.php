@@ -58,6 +58,38 @@ $(document).ready(function(){
 		$("#test_content").hide();
 		$("#edit_pattern").hide();
 		$("#save_pattern").show();
+
+
+
+		//copy du lieu
+		var d_url = $.trim($('#gl_url').val());
+    	var d_xpath = $.trim($('#gl_xpath').val());
+    	var d_base = $.trim($('#gl_base_url').val());		    
+	    var d_job = $.trim($('#gd_job').val());
+	    var d_company = $.trim($('#gd_company').val());
+	    var d_location = $.trim($('#gd_location').val());
+	    var d_description = $.trim($('#gd_description').val());
+	    var d_salary = $.trim($('#gd_salary').val());
+	    var d_requirement = $.trim($('#gd_requirement').val());
+	    var d_benifit = $.trim($('#gd_benifit').val());
+	    var d_expired = $.trim($('#gd_expired').val());
+	    var d_tag = $.trim($('#gd_tag').val());	    				
+		//kiem tra du lieu
+	    if($.trim($('#save_xpath_url').val())=="")
+	    {
+			$('#save_xpath_url').val(d_url);
+		    $('#save_xpath_base_url').val(d_base);
+		    $('#save_xpath_code').val(d_xpath);
+		    $('#save_xpath_job').val(d_job);
+		    $('#save_xpath_company').val(d_company);
+		    $('#save_xpath_location').val(d_location);
+		    $('#save_xpath_description').val(d_description);
+		    $('#save_xpath_salary').val(d_salary);
+		    $('#save_xpath_requirement').val(d_requirement);
+		    $('#save_xpath_benifit').val(d_benifit);
+		    $('#save_xpath_expired').val(d_expired);
+		    $('#save_xpath_tag').val(d_tag);
+		}
 		}); 
 
 
@@ -111,7 +143,7 @@ $(document).ready(function(){
 
 	//form save xpath
 		$('#form_save_xpath').submit(function () {
-
+			//lay gia tri cua xpath
 			var page_url = $.trim($('#save_xpath_url').val());
 		    var base_url = $.trim($('#save_xpath_base_url').val());
 		    var xpath_code = $.trim($('#save_xpath_code').val());
@@ -129,7 +161,7 @@ $(document).ready(function(){
 		    	    	    	    	    	  
 		    $.post("AdminTool.php",{func:"savePattern",txt_page_url:page_url,txt_base_url:base_url,txt_xpath_code:xpath_code, txt_login_url:login_url, txt_login_data:login_data, txt_job:job,txt_company:company,txt_location:location,txt_description:description,txt_salary:salary,txt_requirement:requirement,txt_benifit:benifit,txt_expired:expired,txt_tag:tag},function(data,status){
 		    	$("#div_result").html(data);
-			    });
+			});
 		    
 		    return false;	    
 		});
@@ -345,7 +377,7 @@ $(document).ready(function(){
 					<input id="save_xpath_expired" type="text">
 					<h3>Tags</h3>
 					<input id="save_xpath_tag" type="text"> <input type="submit"
-						name="btn_test_2" value="Test pattern">
+						name="btn_test_2" value="Save">
 				</form>
 			</div>
 

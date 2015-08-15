@@ -198,8 +198,9 @@ class XPathModel extends Model {
 		$tags_xpath = addslashes ( $tags_xpath );
 		
 		$this->connection->connect ();
-		$this->connection->write ( "INSERT INTO `job_xpath`(`home_url`, `base_url`, `xpath_code`, `login_url`, `login_data`, `job_xpath`, `company_xpath`, `location_xpath`, `description_xpath`, `salary_xpath`, `requirement_xpath`, `benifit_xpath`, `expired_xpath`, `tags_xpath`) VALUES ('$home_url','$base_url','$xpath_code','$login_url','$login_data','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')" );
+		$ret = $this->connection->write ( "INSERT INTO `job_xpath`(`home_url`, `base_url`, `xpath_code`, `login_url`, `login_data`, `job_xpath`, `company_xpath`, `location_xpath`, `description_xpath`, `salary_xpath`, `requirement_xpath`, `benifit_xpath`, `expired_xpath`, `tags_xpath`) VALUES ('$home_url','$base_url','$xpath_code','$login_url','$login_data','$job_xpath','$company_xpath','$location_xpath','$description_xpath','$salary_xpath','$requirement_xpath','$benifit_xpath', '$expired_xpath', '$tags_xpath')" );
 		$this->connection->close ();
+		return $ret;
 	}
 	public function get($home_url) {
 		$this->connection->connect ();

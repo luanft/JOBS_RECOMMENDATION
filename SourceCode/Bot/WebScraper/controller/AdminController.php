@@ -65,7 +65,15 @@ class AdminController
 	{
 		if (isset ( $_POST ['txt_page_url'] ) && isset ( $_POST ['txt_xpath_code'] ) && isset ( $_POST ['txt_job'] ) && isset ( $_POST ['txt_company'] ) && isset ( $_POST ['txt_location'] ) && isset ( $_POST ['txt_description'] ) && isset ( $_POST ['txt_salary'] ) && isset ( $_POST ['txt_requirement'] ) && isset ( $_POST ['txt_benifit'] ) && isset ( $_POST ['txt_tag'] )) {
 			$model = new XPathModel();
-			$model->save( $_POST ['txt_page_url'], $_POST ['txt_base_url'], $_POST ['txt_xpath_code'], $_POST ['txt_login_url'], $_POST ['txt_login_data'],$_POST ['txt_job'], $_POST ['txt_company'], $_POST ['txt_location'], $_POST ['txt_description'], $_POST ['txt_salary'], $_POST ['txt_requirement'], $_POST ['txt_benifit'], $_POST ['txt_expired'], $_POST ['txt_tag'] );
+			$ret = $model->save( $_POST ['txt_page_url'], $_POST ['txt_base_url'], $_POST ['txt_xpath_code'], $_POST ['txt_login_url'], $_POST ['txt_login_data'],$_POST ['txt_job'], $_POST ['txt_company'], $_POST ['txt_location'], $_POST ['txt_description'], $_POST ['txt_salary'], $_POST ['txt_requirement'], $_POST ['txt_benifit'], $_POST ['txt_expired'], $_POST ['txt_tag'] );
+			if($ret)
+			{
+				echo "Done!";
+			}
+			else 
+			{
+				echo "Error!";	
+			}
 		}
 	}
 	
