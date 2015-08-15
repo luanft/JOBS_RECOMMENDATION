@@ -104,7 +104,11 @@ $(document).ready(function(){
 		$("#save_pattern").hide();
 		$("#log_pattern").show();
 		});
-
+	$("#resolved_log").click(function(){
+		
+		$("#log_pattern").hide();
+		$("#div_result").html("Resolved all");
+	});
 	//test home
 	$('#form_get_link').submit(function () {
 		
@@ -396,7 +400,7 @@ $(document).ready(function(){
 			<div id= 'log_pattern'>
 				<form id= 'form_test_xpath' method="" action="">
 				<?php $log= new TestGUI(); $log->showLog()?>
-				
+				<a id= 'resolved_log' href='#'> resolved</a>
 				</form>
 			</div>
 			<!-- result -->

@@ -74,11 +74,11 @@ class TestGUI
 					$this->log->write_log($url, "page ".$_GET['page']." don't have links");
 	
 				}
-				//dữ liệu trang null=>bỏ qua, tiếp trang mới. 
+				//dÆ°Ìƒ liÃªÌ£u trang null=>boÌ‰ qua, tiÃªÌ�p trang mÆ¡Ì�i. 
 				$next_page = $_GET ['page'] + 1;
 				
 			}
-			//đã duyệt hết 3 page của 1 website 
+			//Ä‘aÌƒ duyÃªÌ£t hÃªÌ�t 3 page cuÌ‰a 1 website 
 			else {
 				$next_xpath = $_GET ['xpath_id'] + 1;
 				$next_page = 1;	
@@ -86,18 +86,18 @@ class TestGUI
 				//die("AAAA");
 				//sleep(10);			
 			}
-			//xong hết một page
+			//xong hÃªÌ�t mÃ´Ì£t page
 			$next = "TestGUI.php?task=testLink&page=" . $next_page . "&xpath_id=" . $next_xpath;
 			echo "<script>window.location =\"$next\";</script>";
 			exit ();
 		}
-		//xong hết các page của 1 website
+		//xong hÃªÌ�t caÌ�c page cuÌ‰a 1 website
 		else{
 			//die("xong main");
 			//tach du lieu
 			$_SESSION ['total_url'] = count ( $_SESSION ['link'] );
 			
-			//nếu có link công việc
+			//nÃªÌ�u coÌ� link cÃ´ng viÃªÌ£c
 			if($_SESSION['total_url']){
 			$next = "TestGUI.php?task=testData&page=0";
 			echo "<script>window.location =\"$next\";</script>";
@@ -111,7 +111,7 @@ class TestGUI
 	{
 		
 		if (isset ( $_GET ['page'] )) {
-			//link của mỗi trang job, lấy thuộc tính url của session link ở page 0
+			//link cuÌ‰a mÃ´Ìƒi trang job, lÃ¢Ì�y thuÃ´Ì£c tiÌ�nh url cuÌ‰a session link Æ¡Ì‰ page 0
 			$url = $_SESSION ['link'] [$_GET ['page']] ['url'];
 				
 			$type = $_SESSION ['link'] [$_GET ['page']] ['type'];
@@ -210,6 +210,7 @@ class TestGUI
 	{
 		$table= $this->log->get_log();
 		foreach ($table as $row){
+			
 			echo $row['EvenTime']." ".$row['PageUrl']." ".$row['Error']."<br>";
 		}
 	}
