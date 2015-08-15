@@ -210,7 +210,7 @@ class XPathModel extends Model {
 	}
 	public function getAll() {
 		$this->connection->connect ();
-		$data = $this->connection->read ( "SELECT * from job_xpath" );
+		$data = $this->connection->read ( "SELECT * from job_xpath where id=1" );
 		$this->connection->close ();
 		return $data;
 	}
@@ -233,6 +233,37 @@ class XPathModel extends Model {
     tags_xpath='" . $tags . "' where home_url='" . $page_url . "'";
 		$this->connection->write ( $sql );
 		$this->connection->close ();
+	}
+}
+class LogJobModel extends Model
+{
+
+	public function __construct()
+	{
+		parent::__construct();
+
+	}
+	public function write_log($page_url, $error)
+	{
+		$this->connection->connect();
+		$sql= "insert into `job_log` (`PageUrl`, `Error`) values ('".$page_url."',\"".$error."\")";
+		$this->connection->write($sql);
+		$this->connection->close();
+	}
+	public function get_log()
+	{
+		$this->connection->connect();
+		$sql= "select `EvenTime`, `PageUrl`, `Error` from `job_log` where `Checked`=0";
+		$data= $this->connection->read($sql);
+		$this->connection->close();
+		return $data;
+	}
+	public function updateChecked($EventTime)
+	{
+		$this->connection->connect();
+		$sql= "Update `job_log` set Checked= 1 where EvenTime=".$EventTime;
+		$this->connection->write($sql);
+		$this->connection->close();
 	}
 }
 

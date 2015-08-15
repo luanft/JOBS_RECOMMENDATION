@@ -34,7 +34,14 @@ class Session {
 					$_SESSION ['login_data'] [] = '';
 					$_SESSION ['cookie_name'] [] = "";
 				}
-				$_SESSION ['num_site'] = self::$num_site;
+				
+			}
+			$_SESSION ['num_site'] = self::$num_site;
+			$_SESSION ['link']=null;
+			$_SESSION['wrong_link']=0;
+			$_SESSION['num_link']=null;
+			for($i=0; $i<$_SESSION['num_site'];$i++){
+				$_SESSION['num_link'][$i]=0;
 			}
 		}
 	}

@@ -1,6 +1,6 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-
+require_once 'TestGUI.php';
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -30,12 +30,15 @@ $(document).ready(function(){
 	$("#edit_pattern").hide();
 	$("#save_pattern").hide();
 	$("#update_pattern").hide();
+	$("#log_pattern").hide();
 	
 	$("#menu_main").click(function(){
 		$("#test_main").show();
 		$("#test_content").hide();
 		$("#edit_pattern").hide();
 		$("#save_pattern").hide();
+		$("#log_pattern").hide();
+		$("#log_pattern").hide();
 		}); 
 
 	$("#menu_detail").click(function(){
@@ -43,6 +46,7 @@ $(document).ready(function(){
 		$("#test_content").show();
 		$("#edit_pattern").hide();
 		$("#save_pattern").hide();
+		$("#log_pattern").hide();
 		}); 
 
 
@@ -51,15 +55,16 @@ $(document).ready(function(){
 		$("#test_content").hide();
 		$("#edit_pattern").show();
 		$("#save_pattern").hide();
+		$("#log_pattern").hide();
 		}); 
+	
 
 	$("#menu_save").click(function(){
 		$("#test_main").hide();
 		$("#test_content").hide();
 		$("#edit_pattern").hide();
 		$("#save_pattern").show();
-
-
+		$("#log_pattern").hide();
 
 		//copy du lieu
 		var d_url = $.trim($('#gl_url').val());
@@ -92,7 +97,13 @@ $(document).ready(function(){
 		}
 		}); 
 
-
+	$("#menu_log").click(function(){
+		$("#test_main").hide();
+		$("#test_content").hide();
+		$("#edit_pattern").hide();
+		$("#save_pattern").hide();
+		$("#log_pattern").show();
+		});
 
 	//test home
 	$('#form_get_link').submit(function () {
@@ -239,6 +250,7 @@ $(document).ready(function(){
 					<li><a id="menu_detail" href="#">Detail pattern</a></li>
 					<li><a id="menu_edit" href="#">Edit pattern</a></li>
 					<li><a id="menu_save" href="#">Save pattern</a></li>
+					<li><a id="menu_log" href="#">Log pattern</a></li>
 				</ul>
 			</div>
 		</div>
@@ -380,7 +392,11 @@ $(document).ready(function(){
 						name="btn_test_2" value="Save">
 				</form>
 			</div>
-
+			<div id= 'log_pattern'>
+				<form id= 'form_test_xpath' method="" action="">
+				<?php $log= new TestGUI(); $log->showLog()?>
+				</form>
+			</div>
 			<!-- result -->
 			<h2>Result:</h2>
 			<div id="div_result"></div>
