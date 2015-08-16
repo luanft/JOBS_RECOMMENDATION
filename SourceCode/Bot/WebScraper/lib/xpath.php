@@ -29,7 +29,7 @@ function get_xpath_node($data,$query)
 {
 	return $data->find($query);	
 }
-
+//lay du lieu tu xpath data
 function lay_du_lieu($xdata,$query)
 {
 	try {

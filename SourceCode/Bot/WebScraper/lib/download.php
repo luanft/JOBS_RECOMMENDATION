@@ -15,16 +15,16 @@ function curl_download($Url, $cookie) {
 function login($url, $data, $cookie) {
 
 	$login = curl_init ();
-	if (trim($cookie) == "")	return;
-	$fp = fopen ( $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie", "w" );
-	fclose ( $fp );
-	chmod ( $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie", 0777 );
-	curl_setopt ( $login, CURLOPT_COOKIEJAR, $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie" );
-	curl_setopt ( $login, CURLOPT_COOKIEFILE, $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie" );	
-	curl_setopt ( $login, CURLOPT_TIMEOUT, 0000 );
+	if (trim($cookie) == "") return;
+	$fp = fopen ($_SERVER ["DOCUMENT_ROOT"]."/cookie/".$cookie, "w");
+	fclose ($fp);
+	chmod ( $_SERVER ["DOCUMENT_ROOT"]."/cookie/".$cookie, 0777 );
+	curl_setopt ( $login, CURLOPT_COOKIEJAR, $_SERVER ["DOCUMENT_ROOT"]."/cookie/".$cookie );
+	curl_setopt ( $login, CURLOPT_COOKIEFILE, $_SERVER ["DOCUMENT_ROOT"]."/cookie/".$cookie );	
+	curl_setopt ( $login, CURLOPT_TIMEOUT, 1000 );
 	curl_setopt ( $login, CURLOPT_RETURNTRANSFER, TRUE );
 	curl_setopt ( $login, CURLOPT_URL, $url );
-	curl_setopt ( $login, CURLOPT_USERAGENT, $_SERVER ['HTTP_USER_AGENT'] );
+	curl_setopt ( $login, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0" );
 	curl_setopt ( $login, CURLOPT_FOLLOWLOCATION, TRUE );
 	curl_setopt ( $login, CURLOPT_POST, TRUE );
 	curl_setopt ( $login, CURLOPT_POSTFIELDS, $data );
@@ -36,28 +36,25 @@ function login($url, $data, $cookie) {
 }
 
 
-
+//get content webpage as html
 function curl_download_old($Url,$cookie='')
 {
-
-	// Báº¯t Ä‘áº§u CURl
-	$ch = curl_init($Url);
-	// Thiáº¿t láº­p giáº£ láº­p trÃ¬nh duyá»‡t
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	//init curl object
+	$ch = curl_init($Url);	
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);	
 	curl_setopt($ch, CURLOPT_VERBOSE, true);
-	// nghÄ©a lÃ  giáº£ máº¡o Ä‘ang gá»­i tá»« trÃ¬nh duyá»‡t nÃ o Ä‘Ã³, á»Ÿ Ä‘Ã¢y tÃ´i dÃ¹ng Firefox
-	curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER ['HTTP_USER_AGENT']);
-	// Thiáº¿t láº­p tráº£ káº¿t quáº£ vá»� chá»© khÃ´ng print ra
+	//emulate web browser
+	curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 6.3; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	// Thá»�i gian timeout
+	//set time out value
 	curl_setopt($ch, CURLOPT_TIMEOUT, 3000);
+	//set cookie
 	if ($cookie != "")
 		curl_setopt ( $ch, CURLOPT_COOKIEFILE,  $_SERVER ["DOCUMENT_ROOT"]."/cookie/$cookie");
-	// Thá»±c hiá»‡n download file
+	//download html web page
 	$result = curl_exec($ch);
-	// Ä�Ã³ng CURL
+	//close curl
 	curl_close($ch);
-
 	return $result;
 }
 ?>

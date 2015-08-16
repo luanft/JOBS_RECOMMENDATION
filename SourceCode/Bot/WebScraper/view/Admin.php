@@ -1,6 +1,17 @@
 <?php
 header ( 'Content-Type: text/html; charset=utf-8' );
-require_once 'TestGUI.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/model/Model.php';
+
+function showLog()
+{
+	$log= new LogJobModel();
+	$table= $log->get_log();
+	foreach ($table as $row){
+			
+		echo $row['EvenTime']." ".$row['PageUrl']." ".$row['Error']."<br>";
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -399,7 +410,9 @@ $(document).ready(function(){
 			</div>
 			<div id= 'log_pattern'>
 				<form id= 'form_test_xpath' method="" action="">
-				<?php $log= new TestGUI(); $log->showLog()?>
+				<?php  
+					showLog();
+				?>
 				<a id= 'resolved_log' href='#'> resolved</a>
 				</form>
 			</div>

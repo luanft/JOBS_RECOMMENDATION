@@ -210,7 +210,7 @@ class XPathModel extends Model {
 	}
 	public function getAll() {
 		$this->connection->connect ();
-		$data = $this->connection->read ( "SELECT * from job_xpath where id=1" );
+		$data = $this->connection->read ( "SELECT * from job_xpath" );
 		$this->connection->close ();
 		return $data;
 	}

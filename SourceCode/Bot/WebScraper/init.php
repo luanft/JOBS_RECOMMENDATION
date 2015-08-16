@@ -15,8 +15,7 @@ for ($i=0; $i < Session::count(); $i++ )
 	catch (Exception $e)
 	{
 		
-	}
-		
+	}	
 }
 echo '<script>window.location="WebScraper.php?task=getLink&page=1&xpath_id=0";</script>';
  

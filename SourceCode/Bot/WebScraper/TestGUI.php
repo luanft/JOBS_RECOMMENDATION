@@ -1,6 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/controller/TestTool.php';
-set_time_limit(0);
+require_once $_SERVER['DOCUMENT_ROOT'].'/controller/TestController.php';
 $testObject= new TestGUI();
 $testObject->control();	 
 ?>
